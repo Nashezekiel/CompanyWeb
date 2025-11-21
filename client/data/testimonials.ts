@@ -1,0 +1,39 @@
+export type Testimonial = {
+  id: string;
+  quote: string;
+  name: string;
+  role?: string;
+  company?: string;
+  order: number;
+  rating?: number; // 1-5 stars
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    id: "t1",
+    quote: "Our school campus now has seamless coverage across all blocks. Installation was swift and professional.",
+    name: "Sarah Johnson",
+    role: "Education Director",
+    company: "Metro School District",
+    order: 1,
+    rating: 5,
+  },
+  {
+    id: "t2",
+    quote: "We extended WiFi over 8km to our field office—saving on costly fiber trenching.",
+    name: "Michael Chen",
+    role: "Operations Lead",
+    company: "AgriCo",
+    order: 2,
+    rating: 4,
+  },
+  {
+    id: "t3",
+    quote: "Starlink business plan with managed failover has kept our POS online 24/7.",
+    name: "David Rodriguez",
+    role: "Retail CEO",
+    company: "TechMart",
+    order: 3,
+    rating: 5,
+  },
+];

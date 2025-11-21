@@ -17,6 +17,9 @@
       "dest": "/api/serverless.ts"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

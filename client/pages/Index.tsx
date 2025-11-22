@@ -157,7 +157,7 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
 
             <div className="absolute inset-0 md:hidden flex items-stretch">
-              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-sm shadow-xl transition-all flex flex-col">
+              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-[2px] shadow-xl transition-all flex flex-col">
                 <div className="mb-3 mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs">
                   <Satellite className="h-4 w-4" /> Starlink Global Network
                 </div>

@@ -26,6 +26,8 @@ const config: Config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          // Add colors with opacity for direct use in arbitrary properties
+          "28": "hsla(var(--primary), 0.28)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -42,6 +44,7 @@ const config: Config = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          "24": "hsla(var(--accent), 0.24)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

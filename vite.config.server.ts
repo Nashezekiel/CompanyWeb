@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import path from "path";
+import { nodeExternals } from "rollup-plugin-node-externals";
 
 // Server build configuration
 export default defineConfig({
@@ -14,24 +15,10 @@ export default defineConfig({
     target: "node22",
     ssr: true,
     rollupOptions: {
-      external: [
-        // Node.js built-ins
-        "fs",
-        "path",
-        "url",
-        "http",
-        "https",
-        "os",
-        "crypto",
-        "stream",
-        "util",
-        "events",
-        "buffer",
-        "querystring",
-        "child_process",
-        // External dependencies that should not be bundled
-        "express",
-        "cors",
+      plugins: [
+        nodeExternals({
+          deps: true, // Externalize all dependencies
+        }),
       ],
       output: {
         format: "es",

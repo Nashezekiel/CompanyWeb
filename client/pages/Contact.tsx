@@ -302,7 +302,7 @@ export default function Contact() {
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
       <Seo
         title="Contact Starlink Installers in Nigeria | Get Connected"
-        description="Contact Starlink Global Network to get Starlink installation, internet connection, and enterprise networking solutions anywhere in Nigeria. Request a quote or talk to our team."
+        description="Contact Starlink Installation & Services to get Starlink installation, internet connection, and enterprise networking solutions anywhere in Nigeria. Request a quote or talk to our team."
       />
       {/* Hero Section */}
       <section className="relative py-12">

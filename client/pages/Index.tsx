@@ -51,7 +51,7 @@ export default function Index() {
   return (
     <div className="flex min-h-screen flex-col">
       <Seo
-        title="Starlink Installation & Internet Connection in Nigeria | Starlink Global Network"
+        title="Starlink Installation & Internet Connection in Nigeria | Starlink Installation & Services"
         description="Get Starlink devices, professional installation, and reliable internet connection anywhere in Nigeria. We design and deploy Starlink, WiFi, and connectivity solutions for homes, businesses, NGOs, and remote sites."
       />
       <Hero />
@@ -157,9 +157,9 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
 
             <div className="absolute inset-0 md:hidden flex items-stretch">
-              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-[2px] shadow-xl transition-all flex flex-col">
+              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
                 <div className="mb-3 mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs">
-                  <Satellite className="h-4 w-4" /> Starlink Global Network
+                  <Satellite className="h-4 w-4" /> Starlink Installation & Services
                 </div>
                 <h1 className={`font-display mt-4 text-3xl font-extrabold leading-[1.1] tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   {slides[idx].title}
@@ -212,7 +212,7 @@ function Hero() {
             <div className="relative my-8 md:my-0 h-full w-full rounded-none border border-white/10 bg-[#000080] p-6 md:p-10 pt-8 md:pt-12 text-white backdrop-blur-md shadow-xl transition-all flex flex-col overflow-hidden">
               <div className={`mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs transition-all duration-300 ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'}`}
               >
-                <Satellite className="h-4 w-4" /> Starlink Global Network
+                <Satellite className="h-4 w-4" /> Starlink Installation & Services
               </div>
               <h1 className={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight transition-all duration-500 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}>
                 {slides[idx].title}

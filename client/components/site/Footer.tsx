@@ -31,9 +31,13 @@ export default function Footer() {
         <div className="container grid gap-8 py-12 md:grid-cols-4">
           <div>
             <div className="mb-3 flex items-center gap-2">
-              <div className="size-8 rounded-lg bg-gradient-to-tr from-primary to-accent" />
+              <img
+                src="/starlinklogo.png"
+                alt="Starlink Installation & Services logo"
+                className="h-8 w-auto"
+              />
               <div className="font-extrabold leading-tight">
-                <span className="tracking-tight">Starlink Global Network</span>
+                <span className="tracking-tight">Starlink Installation & Services</span>
               </div>
             </div>
             <p className="text-sm text-foreground/70 max-w-sm">
@@ -99,7 +103,7 @@ export default function Footer() {
 
         <div className="border-t py-6">
           <div className="container flex flex-col items-center justify-center gap-3 text-xs text-foreground/60 text-center">
-            <p>© {new Date().getFullYear()} Starlink Global Network LTD. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Starlink Installation & Services LTD. All rights reserved.</p>
             <div className="flex items-center gap-4">
               <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
               <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>

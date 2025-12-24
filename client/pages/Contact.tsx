@@ -447,19 +447,19 @@ export default function Contact() {
                       <div className="text-sm text-foreground/60">
                         We'll respond within 24 hours
                       </div>
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         disabled={loading}
-                        className="transition-all hover:scale-105"
+                        className="transition-all hover:scale-105 h-11 px-4 text-sm md:h-12 md:px-6 md:text-base"
                       >
                         {loading ? (
                           <>
-                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
+                            <div className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
                             Sending...
                           </>
                         ) : (
                           <>
-                            <Send className="mr-2 h-4 w-4" />
+                            <Send className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                             Send Request
                           </>
                         )}

@@ -7,9 +7,11 @@ import ProductsTeaser from "@/components/site/ProductsTeaser";
 import BlogTeaser from "@/components/site/BlogTeaser";
 import SpotlightCard from "@/components/site/SpotlightCard";
 import LogoLoop from "@/components/site/LogoLoop";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useInView from "@/hooks/use-inview";
 import Seo from "@/components/Seo";
+import { faqs } from "@/data/faq";
+import { testimonials as initialTestimonials } from "@/data/testimonials";
 
 type StatItem = {
   value: number;
@@ -24,6 +26,8 @@ const HOME_STATS: StatItem[] = [
   { value: 99.9, suffix: "%", label: "Uptime Targets", decimals: 1 },
   { value: 24, suffix: "/7", label: "Support Availability" },
 ];
+
+const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
 
 const PARTNER_LOGOS = [
   "Starlink",
@@ -47,12 +51,46 @@ const PARTNER_LOGOS = [
   title: label,
 }));
 
+const FAQ_ENTRIES = faqs.map((faq) => ({
+  "@type": "Question",
+  name: faq.question,
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: faq.answer,
+  },
+}));
+
 export default function Index() {
+  const faqSchema = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQ_ENTRIES,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+        ],
+      },
+    ],
+    []
+  );
+
   return (
     <div className="flex min-h-screen flex-col">
       <Seo
         title="Starlink Installation & Internet Connection in Nigeria | Starlink Installation & Services"
         description="Get Starlink devices, professional installation, and reliable internet connection anywhere in Nigeria. We design and deploy Starlink, WiFi, and connectivity solutions for homes, businesses, NGOs, and remote sites."
+        canonical="/"
+        schema={faqSchema}
       />
       <Hero />
       <section className="pt-2 pb-6 md:pt-6">
@@ -157,21 +195,21 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
 
             <div className="absolute inset-0 md:hidden flex items-stretch">
-              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
-                <div className="mb-3 mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs">
-                  <Satellite className="h-4 w-4" /> Starlink Installation & Services
+              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 px-4 py-6 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
+                <div className="mb-3 mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] tracking-tight">
+                  <Satellite className="h-3.5 w-3.5" /> Starlink Installation & Services
                 </div>
-                <h1 className={`font-display mt-4 text-3xl font-extrabold leading-[1.1] tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+                <h1 className={`font-display mt-2 text-[26px] font-extrabold leading-tight tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   {slides[idx].title}
                 </h1>
-                <p className={`mt-4 pt-2 max-w-xs text-base text-white/85 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                <p className={`mt-3 max-w-xs text-sm text-white/85 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                   {slides[idx].text}
                 </p>
-                <div className={`mt-20 flex flex-wrap items-center gap-3 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <Button asChild className="h-11 px-6 text-base transition-all hover:scale-105">
+                <div className={`mt-12 flex flex-wrap items-center gap-3 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  <Button asChild className="h-10 px-5 text-sm transition-all hover:scale-105">
                     <Link to="/contact">Get Connected</Link>
                   </Button>
-                  <Button asChild className="h-11 px-6 text-base bg-white text-blue-900 hover:bg-white/90 border-none transition-all hover:scale-105">
+                  <Button asChild className="h-10 px-5 text-sm bg-white text-blue-900 hover:bg-white/90 border-none transition-all hover:scale-105">
                     <Link to="/services">Explore Services</Link>
                   </Button>
                 </div>
@@ -357,9 +395,6 @@ function Stats() {
   );
 }
 
-
-import { faqs } from "@/data/faq";
-import { testimonials as initialTestimonials } from "@/data/testimonials";
 
 function Testimonials() {
   const [testimonials, setTestimonials] = useState< { quote: string; name: string; role?: string; company?: string; rating?: number }[] | null>(null);

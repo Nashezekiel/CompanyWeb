@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import Analytics from "@/components/Analytics";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -123,6 +124,7 @@ const AppContent = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Analytics />
       <Toaster />
       <Sonner />
       <BrowserRouter>

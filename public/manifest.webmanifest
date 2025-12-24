@@ -1,0 +1,16 @@
+{
+  "name": "Starlink Installation & Services",
+  "short_name": "Starlink NG",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000080",
+  "theme_color": "#0040ff",
+  "description": "Starlink hardware supply, installation, and enterprise connectivity services across Nigeria.",
+  "icons": [
+    {
+      "src": "/starlinklogo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}

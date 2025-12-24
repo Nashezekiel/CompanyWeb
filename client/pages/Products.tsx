@@ -36,6 +36,13 @@ export default function Products() {
       <Seo
         title="Starlink Devices & Accessories in Nigeria | Starlink Products"
         description="Browse Starlink devices and accessories available in Nigeria, including dishes and hardware we supply and install for reliable internet connection across the country."
+        canonical="/products"
+        keywords={[
+          "Starlink devices Nigeria",
+          "Starlink kits for sale",
+          "Starlink accessories Nigeria",
+          "Buy Starlink hardware",
+        ]}
       />
       <div
         className="fixed inset-0 -z-10"
@@ -51,7 +58,30 @@ export default function Products() {
         <ScrollReveal direction="up" delay={0.1}>
           <div className="mx-auto mb-8 max-w-3xl text-center">
             <h1 className="text-3xl font-extrabold text-white">Products</h1>
-            <p className="mt-2 text-white">Browse Starlink hardware and accessories we supply and install.</p>
+            <p className="mt-2 text-white">
+              Browse Starlink hardware, high-gain antennas, mesh WiFi kits, and managed accessories curated for Nigeria’s climate.
+              Every product includes professional installation options plus after-sales support.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal direction="up" delay={0.2}>
+          <div className="mb-10 grid gap-4 rounded-2xl border border-white/20 bg-white/10 p-6 text-sm text-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/20 md:grid-cols-2">
+            <div>
+              <h2 className="text-lg font-semibold text-white">Need help choosing?</h2>
+              <p className="mt-2">
+                Compare Starlink Standard, Flat High Performance, and Mini kits, then link them with our enterprise WiFi or backup power services.
+                For WISP operators, we bundle CPE radios, PoE switches, and billing-ready routers.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Link className="block rounded-lg border border-white/40 bg-white/5 px-4 py-3 hover:bg-white/10" to="/services">
+                See deployment &amp; installation services
+              </Link>
+              <Link className="block rounded-lg border border-white/40 bg-white/5 px-4 py-3 hover:bg-white/10" to="/blog">
+                Read our Starlink buying &amp; setup guides
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
 

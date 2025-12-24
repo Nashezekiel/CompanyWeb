@@ -13,6 +13,8 @@ export default function Blog() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>(initialBlogPosts);
 
+  const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
+
   useEffect(() => {
     const load = async () => {
       try {
@@ -48,11 +50,75 @@ export default function Blog() {
   const isExpanded = (id: number) => expandedId === id;
   const toggleExpanded = (id: number) => setExpandedId((prev) => (prev === id ? null : id));
 
+  const articleSchemas = useMemo(
+    () =>
+      posts.slice(0, 6).map((post) => ({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        image: post.image,
+        datePublished: post.date,
+        author: {
+          "@type": "Person",
+          name: post.author,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Starlink Installation & Services",
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/starlinklogo.png`,
+          },
+        },
+        mainEntityOfPage: `${SITE_URL}/blog/${post.id}`,
+        url: `${SITE_URL}/blog/${post.id}`,
+        inLanguage: "en-NG",
+      })),
+    [posts, SITE_URL]
+  );
+
+  const blogSchema = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        name: "Starlink Guides & Internet Connection Tips in Nigeria",
+        description:
+          "Starlink services, installation guides, WISP business advice, and connectivity best practices for Nigeria and West Africa.",
+        url: `${SITE_URL}/blog`,
+        inLanguage: "en-NG",
+      },
+      ...articleSchemas,
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${SITE_URL}/blog`,
+          },
+        ],
+      },
+    ],
+    [SITE_URL, articleSchemas]
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
       <Seo
         title="Starlink Guides & Internet Connection Tips in Nigeria | Blog"
         description="Read Starlink guides, installation advice, and internet connection tips tailored for Nigeria, including WISP, long-range WiFi, and connectivity best practices."
+        canonical="/blog"
+        schema={blogSchema}
       />
       <section className="relative overflow-hidden py-20">
         <motion.div

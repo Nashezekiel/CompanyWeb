@@ -179,7 +179,7 @@ export default function Header() {
 
       {/* Main navigation bar (sticky) */}
       <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 pt-[env(safe-area-inset-top)]" role="navigation" aria-label="Main">
-        <div className="container flex h-16 items-center gap-2 lg:gap-3 xl:gap-4">
+        <div className="container flex h-16 items-center gap-2 lg:gap-3 xl:gap-4 px-3 sm:px-5">
           <Link to="/" className="flex items-center gap-2">
             <img
               src="/starlinklogo.png"
@@ -187,7 +187,9 @@ export default function Header() {
               className="h-10 w-auto"
             />
             <div className="font-extrabold leading-tight">
-              <span className="tracking-tight text-[18px] sm:text-[22px] md:text-[25px] whitespace-nowrap">Starlink Installation & Services</span>
+              <span className="tracking-tight text-[15px] sm:text-[18px] md:text-[22px] xl:text-[25px] whitespace-nowrap">
+                Starlink Installation & Services
+              </span>
             </div>
           </Link>
 
@@ -201,7 +203,7 @@ export default function Header() {
                         to={n.to}
                         className={({ isActive }) =>
                           cn(
-                            "inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[13px] lg:text-sm xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
+                            "inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[12px] sm:text-[13px] lg:text-[13px] xl:text-sm 2xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
                             isActive && "border-b-2 border-blue-800 text-foreground"
                           )
                         }
@@ -332,7 +334,7 @@ export default function Header() {
                         to={n.to}
                         className={({ isActive }) =>
                           cn(
-                            "inline-flex items-center gap-2 pl-1 md:pl-2 text-sm md:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
+                            "inline-flex items-center gap-2 pl-1 md:pl-2 text-[12px] sm:text-[13px] lg:text-[13px] xl:text-sm 2xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
                             isActive && "border-b-2 border-blue-800 text-foreground"
                           )
                         }
@@ -463,7 +465,7 @@ export default function Header() {
                         to={n.to}
                         className={({ isActive }) =>
                           cn(
-                            "inline-flex items-center gap-1.5 md:gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[13px] md:text-sm lg:text-base xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
+                            "inline-flex items-center gap-1.5 md:gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[12px] sm:text-[13px] lg:text-[13px] xl:text-sm 2xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
                             isActive && "border-b-2 border-blue-800 text-foreground"
                           )
                         }
@@ -636,7 +638,7 @@ export default function Header() {
                 <button
                   key={n.to}
                   onClick={() => handleNavClick(n)}
-                  className="inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[13px] lg:text-sm xl:text-base font-medium transition-colors hover:text-primary text-foreground/70"
+                  className="inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[12px] sm:text-[13px] lg:text-[13px] xl:text-sm 2xl:text-base font-medium transition-colors hover:text-primary text-foreground/70"
                 >
                   {iconFor(n)}
                   <span>{n.label}</span>
@@ -647,7 +649,7 @@ export default function Header() {
                   to={n.to}
                   className={({ isActive }) =>
                     cn(
-                      "inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[13px] lg:text-sm xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
+                      "inline-flex items-center gap-1.5 lg:gap-2 pl-1 md:pl-2 text-[12px] sm:text-[13px] lg:text-[13px] xl:text-sm 2xl:text-base font-medium transition-colors text-foreground/70 hover:text-primary pb-1",
                       isActive && "border-b-2 border-blue-800 text-foreground"
                     )
                   }
@@ -664,11 +666,11 @@ export default function Header() {
           </nav>
 
           <button
-            className="ml-auto inline-flex items-center justify-center rounded-md p-2 lg:hidden"
+            className="ml-auto inline-flex items-center justify-center rounded-md border border-border/60 p-1.5 text-foreground/80 lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Open menu"
           >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </header>

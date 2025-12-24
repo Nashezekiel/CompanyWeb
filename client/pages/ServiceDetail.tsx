@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { services } from "@/data/services";
 import { Button } from "@/components/ui/button";
+import Seo from "@/components/Seo";
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -20,8 +21,38 @@ export default function ServiceDetail() {
     );
   }
 
+  const canonicalPath = `/services/${service.slug}`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    areaServed: "Nigeria",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Starlink Installation & Services",
+      url: "https://www.starlinknetworkservice.ng",
+    },
+    serviceType: "Starlink installation",
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "NGN",
+      availability: "https://schema.org/Available",
+      url: `https://www.starlinknetworkservice.ng${canonicalPath}`,
+    },
+  };
+
   return (
     <section className="py-16">
+      <Seo
+        title={`${service.title} | Starlink Installation Service Nigeria`}
+        description={service.short ?? service.description}
+        canonical={canonicalPath}
+        image={service.image}
+        type="service"
+        keywords={[service.title, "Starlink services Nigeria", "Starlink installer"]}
+        schema={serviceSchema}
+      />
       <div className="container grid gap-8 md:grid-cols-3">
         <div className="md:col-span-2">
           <h1 className="mb-4 text-3xl font-extrabold">{service.title}</h1>

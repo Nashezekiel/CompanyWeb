@@ -3,8 +3,9 @@ import { products as staticProducts } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/site/ProductCard";
 import useInView from "@/hooks/use-inview";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getStored } from "@/lib/storage";
+import Seo from "@/components/Seo";
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -32,6 +33,37 @@ export default function ProductDetail() {
 
   const product = products.find((p) => p.slug === slug);
   const otherProducts = products.filter((p) => p.slug !== slug);
+  const canonicalPath = product ? `/products/${product.slug}` : undefined;
+
+  const productSchema = useMemo(() => {
+    if (!product) return null;
+    const priceValue = parseFloat((product.price ?? "").replace(/[^\d.]/g, ""));
+    const images = product.images && product.images.length > 0 ? product.images : product.image ? [product.image] : undefined;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      sku: product.id,
+      image: images,
+      brand: {
+        "@type": "Brand",
+        name: "Starlink",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "NGN",
+        availability: "https://schema.org/InStock",
+        price: Number.isFinite(priceValue) ? priceValue.toString() : undefined,
+        url: `https://www.starlinknetworkservice.ng${canonicalPath}`,
+        seller: {
+          "@type": "Organization",
+          name: "Starlink Installation & Services",
+        },
+      },
+    };
+  }, [product, canonicalPath]);
 
   if (!product) {
     return (
@@ -49,6 +81,15 @@ export default function ProductDetail() {
 
   return (
     <div>
+      <Seo
+        title={`${product.name} | Starlink Installation & Services Nigeria`}
+        description={product.short ?? product.description}
+        canonical={canonicalPath}
+        image={product.images?.[0] ?? product.image}
+        type="product"
+        keywords={[product.name, product.short ?? "", "Starlink Nigeria", "Starlink installation"]}
+        schema={productSchema ?? undefined}
+      />
       <section className="py-16">
         <div className="container grid gap-8 md:grid-cols-3">
           <div className="md:col-span-2">

@@ -1,13 +1,14 @@
 import "./global.css";
 
 import { Toaster } from "@/components/ui/toaster";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { MessageCircle, X, Phone } from "lucide-react";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import Analytics from "@/components/Analytics";
@@ -35,6 +36,8 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
+  const [chatOpen, setChatOpen] = useState(false);
+
   useEffect(() => {
     try {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -102,21 +105,121 @@ const AppContent = () => {
         </AnimatePresence>
       </main>
       <Footer />
-      <motion.a
-        href="https://wa.me/09060976424?text=Hello%20Starlink%2C%20I%27d%20like%20to%20get%20connected."
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-5 right-5 lg:left-5 lg:right-auto z-50 inline-flex h-12 w-12 lg:w-auto items-center justify-center rounded-full bg-[#25D366] hover:bg-[#25D366] text-white shadow-lg transition-all hover:brightness-110 hover:scale-110 px-0 lg:px-5"
-        initial={{ scale: 0 }}
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ delay: 1, duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Chat on WhatsApp"
-      >
-        <img src="/whatsapp.png" alt="WhatsApp" className="h-8 w-8" />
-        <span className="ml-2 hidden lg:inline">WhatsApp</span>
-      </motion.a>
+      
+      {/* Chat Button with WhatsApp and Call */}
+      <div className="fixed bottom-5 right-5 lg:left-5 lg:right-auto z-50 flex flex-col items-end gap-3">
+        {/* WhatsApp and Call buttons */}
+        <AnimatePresence>
+          {chatOpen && (
+            <>
+              {/* WhatsApp button with hover text */}
+              <motion.div
+                className="group relative flex items-center gap-2"
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <motion.span
+                  className="absolute right-full mr-2 lg:right-auto lg:mr-0 lg:left-full lg:ml-2 whitespace-nowrap rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 pointer-events-none"
+                >
+                  WhatsApp
+                </motion.span>
+                <motion.a
+                  href="https://wa.me/2349060976424?text=Hello%20Starlink%2C%20I%27d%20like%20to%20get%20connected."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all hover:brightness-110 hover:scale-110"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Chat on WhatsApp"
+                >
+                  <img src="/whatsapp.png" alt="WhatsApp" className="h-6 w-6" />
+                </motion.a>
+              </motion.div>
+              
+              {/* Call button with hover text */}
+              <motion.div
+                className="group relative flex items-center gap-2"
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.8 }}
+                transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+              >
+                <motion.span
+                  className="absolute right-full mr-2 lg:right-auto lg:mr-0 lg:left-full lg:ml-2 whitespace-nowrap rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 pointer-events-none"
+                >
+                  Phone
+                </motion.span>
+                <motion.a
+                  href="tel:+2349060976424"
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-all hover:brightness-110 hover:scale-110"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Call us"
+                >
+                  <Phone className="h-6 w-6" />
+                </motion.a>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+        
+        {/* Chat toggle button with text */}
+        <motion.div
+          className="group relative flex items-center gap-2"
+          initial={{ scale: 0 }}
+          animate={{ 
+            scale: chatOpen ? 1 : [1, 1.08, 1]
+          }}
+          transition={{ 
+            scale: chatOpen ? { duration: 0.3 } : { delay: 1, duration: 1.6, repeat: Infinity, ease: "easeInOut" }
+          }}
+        >
+          {/* Text label - always visible when chat icon, visible on hover when X icon */}
+          {chatOpen ? (
+            <span className="absolute right-full mr-2 lg:right-auto lg:mr-0 lg:left-full lg:ml-2 whitespace-nowrap rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              Hide
+            </span>
+          ) : (
+            <span className="absolute right-full mr-2 lg:right-auto lg:mr-0 lg:left-full lg:ml-2 whitespace-nowrap rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white shadow-lg opacity-100 transition-opacity duration-200 pointer-events-none">
+              24/7 Support
+            </span>
+          )}
+          
+          <motion.button
+            onClick={() => setChatOpen(!chatOpen)}
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all hover:brightness-110"
+            whileHover={{ scale: chatOpen ? 1.05 : 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label={chatOpen ? "Close chat" : "Open chat"}
+          >
+            <AnimatePresence mode="wait">
+              {chatOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-6 w-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="chat"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <MessageCircle className="h-6 w-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </motion.div>
+      </div>
     </>
   );
 };

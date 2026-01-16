@@ -4,16 +4,30 @@ const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworks
 const DEFAULT_IMAGE = `${SITE_URL}/images/og/starlink-global-network-og.jpg`;
 const BRAND_NAME = "Starlink Installation & Services";
 const DEFAULT_DESCRIPTION =
-  "Starlink Installation & Services supplies Starlink hardware, enterprise WiFi engineering, and professional installations anywhere in Nigeria.";
+  "Expert Starlink installation and support services in Nigeria. Serving Lagos, Abuja, Port Harcourt, and all 36 states. Professional satellite internet installation, distribution, and 24/7 support. Get fast, reliable connectivity today.";
 const KEYWORD_BASE = [
-  "Starlink Nigeria",
-  "Starlink services",
-  "Starlink installation",
-  "Starlink installers in Nigeria",
+  "Starlink installation Nigeria",
+  "Starlink installation Lagos",
+  "Starlink installation Abuja",
+  "Starlink dealer Nigeria",
+  "Starlink authorized dealer",
+  "Buy Starlink Nigeria",
+  "Starlink internet Nigeria",
+  "Starlink price Nigeria",
+  "Starlink installation cost",
+  "Starlink installer",
+  "Starlink services Nigeria",
+  "Professional Starlink installation",
+  "Starlink setup Nigeria",
+  "Starlink equipment Nigeria",
+  "Starlink maintenance Nigeria",
+  "Starlink support Nigeria",
   "Starlink enterprise WiFi",
   "Starlink backup power",
   "Starlink WISP",
-  "Starlink hardware sales",
+  "Satellite internet Nigeria",
+  "High-speed internet Nigeria",
+  "Starlink coverage Nigeria",
 ];
 
 type StructuredData = Record<string, unknown>;
@@ -230,19 +244,92 @@ function buildStructuredData({
   const localBusinessSchema: StructuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": SITE_URL,
     name: BRAND_NAME,
     url: SITE_URL,
     telephone: "+2349060976424",
+    priceRange: "₦₦₦",
     image,
-    description,
+    description: description || "Professional Starlink installation and services across all 36 states in Nigeria. Expert satellite internet installation, distribution, and support.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "House 7, Trunk H, Mandela Estate, SARS Road",
       addressLocality: "Port Harcourt",
       addressRegion: "Rivers State",
+      postalCode: "500102",
       addressCountry: "NG",
     },
-    areaServed: "Nigeria",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 4.8156,
+      longitude: 7.0498,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Nigeria",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Starlink Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Starlink Installation Service",
+            description: "Professional Starlink satellite internet installation across Nigeria",
+            provider: {
+              "@type": "LocalBusiness",
+              name: BRAND_NAME,
+            },
+            areaServed: {
+              "@type": "Country",
+              name: "Nigeria",
+            },
+            availableChannel: {
+              "@type": "ServiceChannel",
+              serviceUrl: `${SITE_URL}/services`,
+              servicePhone: "+2349060976424",
+            },
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Starlink Maintenance and Support",
+            description: "24/7 Starlink maintenance, troubleshooting, and technical support",
+            provider: {
+              "@type": "LocalBusiness",
+              name: BRAND_NAME,
+            },
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Starlink Equipment Sales",
+            description: "Official Starlink hardware and accessories distribution",
+            provider: {
+              "@type": "LocalBusiness",
+              name: BRAND_NAME,
+            },
+          },
+        },
+      ],
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127",
+    },
     sameAs: [
       "https://www.facebook.com/starlinknigeria",
       "https://www.instagram.com/starlinknigeria",

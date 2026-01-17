@@ -95,7 +95,7 @@ export default function Footer() {
               <li>Support: <a className="hover:text-foreground transition-colors" href="mailto:Appdatagram@gmail.com">Appdatagram@gmail.com</a></li>
               <li>Hours: Mon–Sat, 8:00–18:00</li>
               <li>
-                WhatsApp: <a className="hover:text-foreground transition-colors" href="https://wa.me/09060976424" target="_blank" rel="noreferrer">0906 097 6424</a>
+                WhatsApp: <a className="hover:text-foreground transition-colors" href="https://wa.me/2349060976424" target="_blank" rel="noreferrer">0906 097 6424</a>
               </li>
             </ul>
           </div>

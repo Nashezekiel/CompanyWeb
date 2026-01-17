@@ -40,8 +40,8 @@ export default function ProductsTeaser() {
     <section className="w-full bg-[#000080]">
       <div className="container py-16">
         <div className="mx-auto mb-8 max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold text-white">Our Products</h2>
-          <p className="mt-2 text-white/80">We supply Starlink dishes, mounts, and accessories. Professional installation options available.</p>
+          <h2 className="text-3xl font-extrabold text-white">Starlink Products & Equipment in Nigeria</h2>
+          <p className="mt-2 text-white/80">We are an authorized Starlink dealer in Nigeria, supplying Starlink dishes, mounts, and accessories. Professional installation options available across all 36 states.</p>
         </div>
         <div ref={scrollerRef} className="relative mx-auto max-w-[1100px] flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-3 md:gap-6 xl:gap-8 md:overflow-visible md:items-stretch">
           {featured.map((p) => (
@@ -64,7 +64,7 @@ export default function ProductsTeaser() {
         
         <div className="mt-8 text-center">
           <Button asChild>
-            <Link to="/products">View All Products</Link>
+            <Link to="/products">View All Starlink Products in Nigeria</Link>
           </Button>
         </div>
 

@@ -140,7 +140,7 @@ export default function Header() {
                 <span className="hidden md:inline text-foreground/30">•</span>
                 <div className="flex items-center gap-2">
                   <a
-                    href="tel:09060976424"
+                    href="tel:+2349060976424"
                     className="inline-flex items-center gap-2 text-sm md:text-base text-foreground/80 hover:text-foreground"
                     aria-label="Call 0906 097 6424"
                   >
@@ -156,13 +156,13 @@ export default function Header() {
               <div className="text-right leading-tight">
                 <div className="mt-1 mb-1 flex items-center justify-end gap-2">
                   <Button asChild className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 text-white">
-                    <a href="tel:09060976424" aria-label="Call Starlink Installation & Services">
+                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
                       <Phone className="mr-1 h-4 w-4" /> Call
                     </a>
                   </Button>
                   <Button asChild variant="outline" className="h-8 px-3 text-xs border-green-600 text-green-700 hover:bg-green-700 hover:text-white">
                     <a
-                      href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                      href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                       target="_blank"
                       rel="noreferrer"
                       aria-label="WhatsApp message to Starlink Installation & Services"
@@ -297,7 +297,7 @@ export default function Header() {
                                     size="sm"
                                     className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                   >
-                                    <a href="tel:09060976424" aria-label="Call Starlink Installation & Services">
+                                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
                                       <Phone className="mr-1 h-3 w-3" /> Call
                                     </a>
                                   </Button>
@@ -308,7 +308,7 @@ export default function Header() {
                                     className="h-7 px-3 text-xs border-green-600 text-green-700 hover:bg-green-50"
                                   >
                                     <a
-                                      href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                                      href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                       target="_blank"
                                       rel="noreferrer"
                                       aria-label="WhatsApp message to Starlink Installation & Services"
@@ -428,7 +428,7 @@ export default function Header() {
                                     size="sm"
                                     className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                   >
-                                    <a href="tel:09060976424" aria-label="Call Starlink Installation & Services">
+                                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
                                       <Phone className="mr-1 h-3 w-3" /> Call
                                     </a>
                                   </Button>
@@ -439,7 +439,7 @@ export default function Header() {
                                     className="h-7 px-3 text-xs border-green-600 text-green-700 hover:bg-green-50"
                                   >
                                     <a
-                                      href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                                      href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                       target="_blank"
                                       rel="noreferrer"
                                       aria-label="WhatsApp message to Starlink Installation & Services"
@@ -606,7 +606,7 @@ export default function Header() {
                                   size="sm"
                                   className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                 >
-                                  <a href="tel:09060976424" aria-label="Call Starlink Installation & Services">
+                                  <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
                                     <Phone className="mr-1 h-3 w-3" /> Call
                                   </a>
                                 </Button>
@@ -617,7 +617,7 @@ export default function Header() {
                                   className="h-7 px-3 text-xs border-green-600 text-green-700 hover:bg-green-50"
                                 >
                                   <a
-                                    href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                                    href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="WhatsApp message to Starlink Installation & Services"
@@ -959,7 +959,7 @@ export default function Header() {
               <div className="space-y-2 text-sm text-foreground/80">
                 <div className="text-base font-extrabold">Get your Starlink now</div>
                 <div className="mt-1 flex items-center gap-2">
-                  <a href="tel:09060976424" className="inline-flex items-center gap-1 hover:text-foreground">
+                  <a href="tel:+2349060976424" className="inline-flex items-center gap-1 hover:text-foreground">
                     <Phone className="mt-0.5 h-4 w-4" />
                     <span>0906 097 6424</span>
                   </a>
@@ -967,13 +967,13 @@ export default function Header() {
               </div>
               <div className="flex items-center gap-2 pt-4">
                 <Button asChild className="h-9 px-3 text-sm bg-green-600 hover:bg-green-700 text-white">
-                  <a href="tel:09060976424" aria-label="Call Starlink Installation & Services">
+                  <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
                     <Phone className="mr-1 h-4 w-4" /> Call
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="h-9 px-3 text-sm border-green-600 text-green-700 hover:bg-green-50">
                   <a
-                    href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                    href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="WhatsApp message to Starlink Installation & Services"

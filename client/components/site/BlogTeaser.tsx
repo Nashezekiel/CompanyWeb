@@ -64,8 +64,11 @@ export default function BlogTeaser() {
                 <div className="relative overflow-hidden">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - Starlink Installation Nigeria Blog`}
                     className="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                    width="400"
+                    height="176"
                   />
                   <div className="absolute top-3 left-3">
                     <Badge variant="secondary">{post.category}</Badge>

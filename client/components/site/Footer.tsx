@@ -45,17 +45,17 @@ export default function Footer() {
               installation, enterprise networks, and WISP enablement.
             </p>
             <div className="mt-4 flex items-center gap-3">
-              <a 
-                href="https://facebook.com/datagramnetwork" 
-                target="_blank" 
+              <a
+                href="https://facebook.com/datagramnetwork"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20"
               >
                 <Facebook className="h-4 w-4" />
               </a>
-              <a 
-                href="https://instagram.com/datagramnetwork" 
-                target="_blank" 
+              <a
+                href="https://instagram.com/datagramnetwork"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20"
               >
@@ -88,14 +88,11 @@ export default function Footer() {
           <div>
             <h4 className="mb-3 font-semibold">Contact</h4>
             <ul className="space-y-2 text-sm text-foreground/70">
-              <li>
-                Address: <a className="hover:text-foreground transition-colors" href="https://maps.google.com/?q=House%207%2C%20Trunk%20H%2C%20Mandela%20Estate%2C%20SARS%20Road%2C%20Port%20Harcourt%2C%20Rivers%20State%2C%20Nigeria" target="_blank" rel="noreferrer">House 7, Trunk H, Mandela Estate, SARS Road, Port Harcourt, Rivers State, Nigeria</a>
-              </li>
               <li>Email: <a className="hover:text-foreground transition-colors" href="mailto:Appdatagram@gmail.com">Appdatagram@gmail.com</a></li>
               <li>Support: <a className="hover:text-foreground transition-colors" href="mailto:Appdatagram@gmail.com">Appdatagram@gmail.com</a></li>
               <li>Hours: Mon–Sat, 8:00–18:00</li>
               <li>
-                WhatsApp: <a className="hover:text-foreground transition-colors" href="https://wa.me/09060976424" target="_blank" rel="noreferrer">0906 097 6424</a>
+                WhatsApp: <a className="hover:text-foreground transition-colors" href="https://wa.me/2349060976424" target="_blank" rel="noreferrer">0906 097 6424</a>
               </li>
             </ul>
           </div>

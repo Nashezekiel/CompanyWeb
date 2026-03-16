@@ -279,7 +279,7 @@ export default function Contact() {
       `Hello Starlink, I'd like a quote.\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nLocation: ${formData.location}\nService: ${formData.service}\nMessage: ${formData.message}`,
     );
 
-    window.open(`https://wa.me/09060976424?text=${text}`, "_blank");
+    window.open(`https://wa.me/2349060976424?text=${text}`, "_blank");
     setTimeout(() => {
       setLoading(false);
       toast.success("Thanks! We will reach out shortly via WhatsApp/email.");
@@ -337,11 +337,11 @@ export default function Contact() {
                   </p>
                   <div className="flex flex-col gap-3 sm:flex-row w-full">
                     <Button asChild className="bg-green-600 hover:bg-green-700 text-white flex-1 h-12 md:h-14 text-base">
-                      <a href="tel:09060976424"><Phone className="mr-2 h-5 w-5" /> Call Us</a>
+                      <a href="tel:+2349060976424"><Phone className="mr-2 h-5 w-5" /> Call Us</a>
                     </Button>
                     <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 flex-1 h-12 md:h-14 text-base">
                       <a
-                        href={`https://wa.me/09060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
+                        href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -447,19 +447,19 @@ export default function Contact() {
                       <div className="text-sm text-foreground/60">
                         We'll respond within 24 hours
                       </div>
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         disabled={loading}
-                        className="transition-all hover:scale-105"
+                        className="transition-all hover:scale-105 h-11 px-4 text-sm md:h-12 md:px-6 md:text-base"
                       >
                         {loading ? (
                           <>
-                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
+                            <div className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
                             Sending...
                           </>
                         ) : (
                           <>
-                            <Send className="mr-2 h-4 w-4" />
+                            <Send className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                             Send Request
                           </>
                         )}

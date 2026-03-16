@@ -62,6 +62,13 @@ export default function Services() {
       <Seo
         title="Starlink Internet Services & Installation Plans in Nigeria"
         description="Explore Starlink internet services, installation plans, and connectivity solutions in Nigeria, including long-range WiFi, WISP setups, enterprise networks, and backup power."
+        canonical="/services"
+        keywords={[
+          "Starlink services Nigeria",
+          "Starlink installation plans",
+          "Enterprise WiFi Nigeria",
+          "Starlink backup power",
+        ]}
       />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-primary/10 via-transparent to-transparent" />
       <div className="container">
@@ -75,6 +82,34 @@ export default function Services() {
           <p className="mt-3 text-base text-foreground/70">
             Explore fast, secure and scalable plans backed by modern network infrastructure.
           </p>
+        </div>
+
+        <div className="mx-auto mb-10 max-w-4xl text-center text-foreground/80">
+          <p>
+            Our certified engineers deploy Starlink hardware, extend WiFi across estates, design WISP infrastructure, and
+            keep enterprise links online with redundant power. Each service below includes a project discovery session plus
+            optional managed support so estates, resorts, oil &amp; gas sites, and campuses stay connected.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <Link
+              to="/products"
+              className="rounded-xl border bg-card/70 px-4 py-3 text-sm font-semibold text-primary hover:shadow-md"
+            >
+              Browse Starlink Hardware
+            </Link>
+            <Link
+              to="/blog"
+              className="rounded-xl border bg-card/70 px-4 py-3 text-sm font-semibold text-primary hover:shadow-md"
+            >
+              Read Deployment Guides
+            </Link>
+            <Link
+              to="/contact"
+              className="rounded-xl border bg-card/70 px-4 py-3 text-sm font-semibold text-primary hover:shadow-md"
+            >
+              Request Network Audit
+            </Link>
+          </div>
         </div>
 
         <div className="mx-auto max-w-6xl space-y-8">
@@ -94,7 +129,9 @@ export default function Services() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="mb-3 text-foreground/70">Not sure which plan fits best? Get a tailored recommendation.</p>
+          <p className="mb-3 text-foreground/70">
+            Not sure which plan fits best? Get a tailored recommendation or compare <Link className="text-primary underline" to="/products">Starlink hardware</Link> options.
+          </p>
           <Button asChild>
             <Link to="/contact">Request a Quote</Link>
           </Button>

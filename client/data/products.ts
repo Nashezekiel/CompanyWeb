@@ -17,7 +17,7 @@ export const products: Product[] = [
     id: "starlink-gen3v4",
     slug: "starlink-gen3v4",
     name: "Starlink Gen3 v4 Standard Dish",
-    price: "N600,000",
+    price: "N650,000",
     short: "High-speed Starlink kit with Wi‑Fi 6, IP67 rating and professional installation options.",
     description:
       "High‑speed, low‑latency Starlink kit with rugged IP67 dish, Wi‑Fi 6 router and dual Ethernet. Typical 220/25 Mbps and 20–40 ms latency — ideal for homes and small businesses; professional installation available.",
@@ -52,7 +52,7 @@ export const products: Product[] = [
     id: "starlink-flat-hp",
     slug: "starlink-flat-hp",
     name: "Starlink Flat High Performance Dish",
-    price: "N3,500,000",
+    price: "N4,000,000",
     short:
       "High-performance flat dish for organisations, marine, aviation and mobile deployments.",
     description:
@@ -91,7 +91,7 @@ export const products: Product[] = [
     id: "starlink-mini",
     slug: "starlink-mini",
     name: "Starlink Mini",
-    price: "N380,000",
+    price: "N450,000",
     short:
       "Compact, portable Starlink kit with integrated Wi‑Fi router — ideal for travel and small-scale users.",
     description:

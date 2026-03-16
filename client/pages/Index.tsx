@@ -7,9 +7,11 @@ import ProductsTeaser from "@/components/site/ProductsTeaser";
 import BlogTeaser from "@/components/site/BlogTeaser";
 import SpotlightCard from "@/components/site/SpotlightCard";
 import LogoLoop from "@/components/site/LogoLoop";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useInView from "@/hooks/use-inview";
 import Seo from "@/components/Seo";
+import { faqs } from "@/data/faq";
+import { testimonials as initialTestimonials } from "@/data/testimonials";
 
 type StatItem = {
   value: number;
@@ -24,6 +26,8 @@ const HOME_STATS: StatItem[] = [
   { value: 99.9, suffix: "%", label: "Uptime Targets", decimals: 1 },
   { value: 24, suffix: "/7", label: "Support Availability" },
 ];
+
+const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
 
 const PARTNER_LOGOS = [
   "Starlink",
@@ -47,12 +51,121 @@ const PARTNER_LOGOS = [
   title: label,
 }));
 
+const FAQ_ENTRIES = faqs.map((faq) => ({
+  "@type": "Question",
+  name: faq.question,
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: faq.answer,
+  },
+}));
+
 export default function Index() {
+  const faqSchema = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQ_ENTRIES,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: "How to Get Starlink Installation in Nigeria",
+        description: "Step-by-step guide to getting professional Starlink installation services in Nigeria",
+        image: `${SITE_URL}/images/products/starlink-gen3v4/StandardDish1.jpeg`,
+        step: [
+          {
+            "@type": "HowToStep",
+            position: 1,
+            name: "Contact Us",
+            text: "Call us at +234 906 097 6424 or visit our contact page to request a quote for Starlink installation in Nigeria.",
+            url: `${SITE_URL}/contact`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 2,
+            name: "Site Survey",
+            text: "Our certified engineers will conduct a site survey to determine optimal installation location for your Starlink dish.",
+            url: `${SITE_URL}/services`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 3,
+            name: "Professional Installation",
+            text: "We provide professional installation with precision mounting, weatherproof cabling, and complete setup.",
+            url: `${SITE_URL}/services`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 4,
+            name: "Testing & Commissioning",
+            text: "We test your Starlink connection, optimize signal strength, and ensure everything works perfectly before leaving.",
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Starlink Installation Nigeria",
+        provider: {
+          "@type": "LocalBusiness",
+          name: "Starlink Installation & Services",
+          url: SITE_URL,
+          telephone: "+2349060976424",
+        },
+        areaServed: [
+          {
+            "@type": "Country",
+            name: "Nigeria",
+          },
+          {
+            "@type": "City",
+            name: "Lagos",
+          },
+          {
+            "@type": "City",
+            name: "Abuja",
+          },
+          {
+            "@type": "City",
+            name: "Port Harcourt",
+          },
+        ],
+        description: "Professional Starlink satellite internet installation and support services across all 36 states in Nigeria",
+      },
+    ],
+    []
+  );
+
   return (
     <div className="flex min-h-screen flex-col">
       <Seo
-        title="Starlink Installation & Internet Connection in Nigeria | Starlink Installation & Services"
-        description="Get Starlink devices, professional installation, and reliable internet connection anywhere in Nigeria. We design and deploy Starlink, WiFi, and connectivity solutions for homes, businesses, NGOs, and remote sites."
+        title="Starlink Installation Nigeria | Professional Services Across All 36 States | Starlink Installation & Services"
+        description="Expert Starlink installation and support services in Nigeria. Serving Lagos, Abuja, Port Harcourt, and all 36 states. Professional satellite internet installation, distribution, and 24/7 support. Get fast, reliable connectivity today."
+        canonical="/"
+        schema={faqSchema}
+        keywords={[
+          "Starlink installation Nigeria",
+          "Starlink installation Lagos",
+          "Starlink installation Abuja",
+          "Starlink dealer Nigeria",
+          "Buy Starlink Nigeria",
+          "Starlink internet Nigeria",
+          "Professional Starlink installation",
+        ]}
       />
       <Hero />
       <section className="pt-2 pb-6 md:pt-6">
@@ -71,6 +184,51 @@ export default function Index() {
           />
         </div>
       </section>
+      
+      {/* SEO-Optimized Content Section - Hidden visually but accessible to search engines */}
+      <section className="sr-only" aria-label="SEO Content">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6">
+          Professional Starlink Installation Services in Nigeria - Serving All 36 States
+        </h1>
+        <div className="space-y-6">
+          <p>
+            <strong>Starlink Installation & Services</strong> is Nigeria's leading provider of professional Starlink satellite internet installation and support services. We offer expert installation, distribution, and 24/7 technical support across all 36 states in Nigeria, including Lagos, Abuja, Port Harcourt, Kano, Ibadan, and beyond.
+          </p>
+          
+          <h2>
+            Why Choose Us for Starlink Installation in Nigeria?
+          </h2>
+          <p>
+            As an authorized Starlink dealer and professional installer in Nigeria, we provide comprehensive satellite internet solutions for homes, businesses, and enterprises. Our certified engineers ensure proper installation, optimal signal strength, and reliable connectivity that works across Nigeria's diverse geography.
+          </p>
+          
+          <h2>
+            Our Starlink Services Across Nigeria
+          </h2>
+          <ul>
+            <li><strong>Professional Starlink Installation:</strong> Expert installation services in Lagos, Abuja, Port Harcourt, and all major Nigerian cities</li>
+            <li><strong>Starlink Equipment Sales:</strong> Authorized dealer offering Starlink Standard, Flat High Performance, and Mini dishes</li>
+            <li><strong>24/7 Technical Support:</strong> Round-the-clock assistance for troubleshooting and maintenance</li>
+            <li><strong>Enterprise Solutions:</strong> Long-range WiFi, backup power systems, and managed networks for businesses</li>
+            <li><strong>Coverage Nationwide:</strong> We provide Starlink installation services in all 36 Nigerian states</li>
+          </ul>
+          
+          <h2>
+            Starlink Installation in Major Nigerian Cities
+          </h2>
+          <p>
+            We provide professional Starlink installation services in key cities across Nigeria. Our team has completed installations in Lagos (Victoria Island, Lekki, Ikeja), Abuja (Garki, Wuse, Maitama), Port Harcourt, Kano, Ibadan, Enugu, Kaduna, Benin City, and many more locations. Whether you're in a major city or remote area, we can install your Starlink system for optimal performance.
+          </p>
+          
+          <p>
+            Get professional Starlink installation in Nigeria today. Call us at <strong>+234 906 097 6424</strong> or visit our <Link to="/contact">contact page</Link> to request a quote. We offer competitive pricing and same-day installation in most areas.
+          </p>
+          <p>
+            <Link to="/products">View Starlink Products</Link> | <Link to="/services">Explore Our Services</Link> | <Link to="/blog">Read Installation Guides</Link>
+          </p>
+        </div>
+      </section>
+      
       <section aria-label="Highlights band" className="relative mt-6 md:mt-6" style={{ backgroundColor: "whitesmoke" }}>
         <FinalCTA />
         <Stats />
@@ -86,12 +244,6 @@ export default function Index() {
 function Hero() {
   const slides = [
     {
-      src: "/images/products/starlink-flat-hp/FlatHighperformanceversion.jpeg",
-      title: "Enterprise-grade connectivity",
-      text: "High-speed backbones, long-range WiFi up to 10km, and 24/7 backup power systems for mission-critical uptime.",
-      object: "center top",
-    },
-    {
       src: "/images/products/starlink-gen3v4/StandardDish1.jpeg",
       title: "Professional installation",
       text: "Site survey, precision mounting, weatherproof cabling, and commissioning by certified engineers.",
@@ -102,6 +254,12 @@ function Hero() {
       title: "Starlink distribution",
       text: "Procurement, activation, and nationwide support for homes, businesses, and remote operations.",
       object: "center center",
+    },
+    {
+      src: "/images/products/starlink-flat-hp/FlatHighperformanceversion.jpeg",
+      title: "Enterprise-grade connectivity",
+      text: "High-speed backbones, long-range WiFi up to 10km, and 24/7 backup power systems for mission-critical uptime.",
+      object: "center top",
     },
   ];
 
@@ -149,29 +307,32 @@ function Hero() {
               <img
                 key={s.src}
                 src={s.src}
-                alt={s.title}
+                alt={`${s.title} - Professional Starlink Installation Services in Nigeria`}
                 className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${i === idx ? "opacity-100" : "opacity-0"}`}
                 style={{ objectPosition: s.object }}
+                loading={i === 0 ? "eager" : "lazy"}
+                width="1200"
+                height="800"
               />
             ))}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
 
             <div className="absolute inset-0 md:hidden flex items-stretch">
-              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 p-5 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
-                <div className="mb-3 mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs">
-                  <Satellite className="h-4 w-4" /> Starlink Installation & Services
+              <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 px-4 py-6 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
+                <div className="mb-3 mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] tracking-tight">
+                  <Satellite className="h-3.5 w-3.5" /> Starlink Installation & Services
                 </div>
-                <h1 className={`font-display mt-4 text-3xl font-extrabold leading-[1.1] tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+                <h2 className={`font-display mt-2 text-[26px] font-extrabold leading-tight tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   {slides[idx].title}
-                </h1>
-                <p className={`mt-4 pt-2 max-w-xs text-base text-white/85 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                </h2>
+                <p className={`mt-3 max-w-xs text-sm text-white/85 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                   {slides[idx].text}
                 </p>
-                <div className={`mt-20 flex flex-wrap items-center gap-3 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <Button asChild className="h-11 px-6 text-base transition-all hover:scale-105">
+                <div className={`mt-12 flex flex-wrap items-center gap-3 transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  <Button asChild className="h-10 px-5 text-sm transition-all hover:scale-105">
                     <Link to="/contact">Get Connected</Link>
                   </Button>
-                  <Button asChild className="h-11 px-6 text-base bg-white text-blue-900 hover:bg-white/90 border-none transition-all hover:scale-105">
+                  <Button asChild className="h-10 px-5 text-sm bg-white text-blue-900 hover:bg-white/90 border-none transition-all hover:scale-105">
                     <Link to="/services">Explore Services</Link>
                   </Button>
                 </div>
@@ -214,9 +375,9 @@ function Hero() {
               >
                 <Satellite className="h-4 w-4" /> Starlink Installation & Services
               </div>
-              <h1 className={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight transition-all duration-500 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}>
+              <h2 className={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight transition-all duration-500 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}>
                 {slides[idx].title}
-              </h1>
+              </h2>
               <p className={`mt-4 text-base text-white/80 transition-all duration-500 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
                 {slides[idx].text}
               </p>
@@ -357,9 +518,6 @@ function Stats() {
   );
 }
 
-
-import { faqs } from "@/data/faq";
-import { testimonials as initialTestimonials } from "@/data/testimonials";
 
 function Testimonials() {
   const [testimonials, setTestimonials] = useState< { quote: string; name: string; role?: string; company?: string; rating?: number }[] | null>(null);

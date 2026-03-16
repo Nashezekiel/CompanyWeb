@@ -48,7 +48,7 @@ export default function ProductCard({ product, iconActions }: { product: Product
                 variant="outline"
                 className="h-11 w-12 border-white/40 bg-white/10 p-0 text-white hover:bg-white/20"
               >
-                <a href="tel:09060976424" aria-label="Call">
+                <a href="tel:+2349060976424" aria-label="Call">
                   <Phone className="mx-auto h-4 w-4" />
                 </a>
               </Button>
@@ -57,7 +57,7 @@ export default function ProductCard({ product, iconActions }: { product: Product
                 className="h-11 w-12 border-white/40 bg-white/10 p-0 text-white hover:bg-white/20"
               >
                 <a
-                  href={`https://wa.me/09060976424?text=${encodeURIComponent(
+                  href={`https://wa.me/2349060976424?text=${encodeURIComponent(
                     `Hello Starlink, I'm interested in ${product.name}`
                   )}`}
                   target="_blank"
@@ -74,14 +74,14 @@ export default function ProductCard({ product, iconActions }: { product: Product
                 asChild
                 className="flex-1 border border-white/30 bg-white/10 text-white hover:bg-white/20"
               >
-                <a href="tel:09060976424">Call</a>
+                <a href="tel:+2349060976424">Call</a>
               </Button>
               <Button
                 asChild
                 className="flex-1 border border-white/30 bg-white/10 text-white hover:bg-white/20"
               >
                 <a
-                  href={`https://wa.me/09060976424?text=${encodeURIComponent(
+                  href={`https://wa.me/2349060976424?text=${encodeURIComponent(
                     `Hello Starlink, I'm interested in ${product.name}`
                   )}`}
                   target="_blank"

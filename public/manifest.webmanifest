@@ -1,11 +1,11 @@
 {
-  "name": "Starlink Installation & Services",
-  "short_name": "Starlink NG",
+  "name": "DataGram — Starlink Installation Nigeria",
+  "short_name": "DataGram",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000080",
   "theme_color": "#0040ff",
-  "description": "Starlink hardware supply, installation, and enterprise connectivity services across Nigeria.",
+  "description": "DataGram: Starlink installation Nigeria, hardware sales, enterprise WiFi, backup power, and nationwide support.",
   "icons": [
     {
       "src": "/starlinklogo.png",

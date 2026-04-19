@@ -6,6 +6,7 @@ import useInView from "@/hooks/use-inview";
 import { useEffect, useMemo, useState } from "react";
 import { getStored } from "@/lib/storage";
 import Seo from "@/components/Seo";
+import { BRAND_NAME, SITE_URL } from "@/lib/site";
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -56,14 +57,14 @@ export default function ProductDetail() {
         priceCurrency: "NGN",
         availability: "https://schema.org/InStock",
         price: Number.isFinite(priceValue) ? priceValue.toString() : undefined,
-        url: `https://www.starlinknetworkservice.ng${canonicalPath}`,
+        url: `${SITE_URL}${canonicalPath}`,
         seller: {
           "@type": "Organization",
-          name: "Starlink Installation & Services",
+          name: BRAND_NAME,
         },
       },
     };
-  }, [product, canonicalPath]);
+  }, [canonicalPath, product]);
 
   if (!product) {
     return (
@@ -82,7 +83,7 @@ export default function ProductDetail() {
   return (
     <div>
       <Seo
-        title={`${product.name} | Starlink Installation & Services Nigeria`}
+        title={`${product.name} | Buy Starlink Nigeria | ${BRAND_NAME}`}
         description={product.short ?? product.description}
         canonical={canonicalPath}
         image={product.images?.[0] ?? product.image}

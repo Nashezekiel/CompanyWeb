@@ -301,8 +301,9 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
       <Seo
-        title="Contact Starlink Installers in Nigeria | Get Connected"
-        description="Contact Starlink Installation & Services to get Starlink installation, internet connection, and enterprise networking solutions anywhere in Nigeria. Request a quote or talk to our team."
+        title="Contact Starlink Installers Nigeria | DataGram"
+        description="Contact DataGram for Starlink installation Nigeria-wide, hardware quotes, enterprise WiFi, and backup power. Call, WhatsApp, or email—get a free site survey today."
+        canonical="/contact"
       />
       {/* Hero Section */}
       <section className="relative py-12">

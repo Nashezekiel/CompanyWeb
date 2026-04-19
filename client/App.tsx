@@ -25,6 +25,11 @@ import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import FaqPage from "./pages/FaqPage";
+import LocationsIndex from "./pages/LocationsIndex";
+import LocationDetail from "./pages/LocationDetail";
+import StarlinkGuideNigeria from "./pages/StarlinkGuideNigeria";
+import Gallery from "./pages/Gallery";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -71,6 +76,11 @@ const AppContent = () => {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/support" element={<Support />} />
+              <Route path="/faq" element={<FaqPage />} />
+              <Route path="/locations" element={<LocationsIndex />} />
+              <Route path="/locations/:slug" element={<LocationDetail />} />
+              <Route path="/guide/starlink-nigeria" element={<StarlinkGuideNigeria />} />
+              <Route path="/gallery" element={<Gallery />} />
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={

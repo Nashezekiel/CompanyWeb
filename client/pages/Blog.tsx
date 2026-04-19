@@ -7,13 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import Seo from "@/components/Seo";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { BRAND_NAME, SITE_URL } from "@/lib/site";
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>(initialBlogPosts);
-
-  const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
 
   useEffect(() => {
     const load = async () => {
@@ -65,7 +64,7 @@ export default function Blog() {
         },
         publisher: {
           "@type": "Organization",
-          name: "Starlink Installation & Services",
+          name: BRAND_NAME,
           logo: {
             "@type": "ImageObject",
             url: `${SITE_URL}/starlinklogo.png`,
@@ -83,7 +82,7 @@ export default function Blog() {
       {
         "@context": "https://schema.org",
         "@type": "Blog",
-        name: "Starlink Guides & Internet Connection Tips in Nigeria",
+        name: "DataGram — Starlink guides & Nigeria connectivity tips",
         description:
           "Starlink services, installation guides, WISP business advice, and connectivity best practices for Nigeria and West Africa.",
         url: `${SITE_URL}/blog`,
@@ -115,10 +114,11 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
       <Seo
-        title="Starlink Guides & Internet Connection Tips in Nigeria | Blog"
-        description="Read Starlink guides, installation advice, and internet connection tips tailored for Nigeria, including WISP, long-range WiFi, and connectivity best practices."
+        title="Starlink Nigeria Guides & Tips | DataGram Blog"
+        description="Long-tail Starlink Nigeria guides: setup, WiFi extension, WISP tips, and power resilience—written by DataGram installers. Bookmark for updates."
         canonical="/blog"
         schema={blogSchema}
+        keywords={["how to set up Starlink in Nigeria", "Starlink monthly subscription Nigeria", "Starlink installation Nigeria"]}
       />
       <section className="relative overflow-hidden py-20">
         <motion.div

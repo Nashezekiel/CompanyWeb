@@ -8,8 +8,8 @@ export default function About() {
   return (
     <div className="flex flex-col">
       <Seo
-        title="About Starlink Installation & Services | Starlink Installers in Nigeria"
-        description="Learn about Starlink Installation & Services, a team of certified Starlink installers and network engineers providing dependable internet connectivity projects across Nigeria."
+        title="About DataGram | Starlink Installer Nigeria | Company & Team"
+        description="Meet DataGram: Starlink installation Nigeria experts—certified field engineers, enterprise WiFi, WISP enablement, and 24/7 support. Trusted Starlink installer Nigeria-wide."
       />
       <section id="introduction" className="relative overflow-hidden scroll-mt-24 bg-[#000080] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,170,255,0.25)_0%,_rgba(0,0,128,0.65)_45%,_rgba(0,0,60,0.95)_100%)]" aria-hidden />
@@ -53,7 +53,7 @@ export default function About() {
             <div className="relative h-full overflow-hidden rounded-[32px] border border-white/20 bg-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.45)] backdrop-blur">
               <img
                 src="/images/products/starlink-mini/starlink.jpeg"
-                alt="About Starlink Installation & Services"
+                alt="DataGram field engineers providing Starlink installation in Nigeria"
                 className="h-[320px] w-full object-cover md:h-full"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#000080]/90 via-[#000080]/60 to-transparent p-6 text-white">

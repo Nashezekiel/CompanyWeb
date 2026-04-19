@@ -1,33 +1,33 @@
 import { useEffect } from "react";
+import {
+  BRAND_NAME,
+  BUSINESS_ADDRESS,
+  BUSINESS_EMAIL,
+  BUSINESS_GEO,
+  BUSINESS_PHONE_E164,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  LEGAL_BUSINESS_NAME,
+  SAME_AS,
+  SITE_URL,
+} from "@/lib/site";
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
-const DEFAULT_IMAGE = `${SITE_URL}/images/og/starlink-global-network-og.jpg`;
-const BRAND_NAME = "Starlink Installation & Services";
-const DEFAULT_DESCRIPTION =
-  "Expert Starlink installation and support services in Nigeria. Serving Lagos, Abuja, Port Harcourt, and all 36 states. Professional satellite internet installation, distribution, and 24/7 support. Get fast, reliable connectivity today.";
 const KEYWORD_BASE = [
   "Starlink installation Nigeria",
-  "Starlink installation Lagos",
+  "Starlink installer Nigeria",
   "Starlink installation Abuja",
-  "Starlink dealer Nigeria",
-  "Starlink authorized dealer",
-  "Buy Starlink Nigeria",
-  "Starlink internet Nigeria",
-  "Starlink price Nigeria",
-  "Starlink installation cost",
-  "Starlink installer",
-  "Starlink services Nigeria",
-  "Professional Starlink installation",
+  "Starlink installation Lagos",
+  "Starlink installation Port Harcourt",
+  "buy Starlink Nigeria",
   "Starlink setup Nigeria",
-  "Starlink equipment Nigeria",
-  "Starlink maintenance Nigeria",
   "Starlink support Nigeria",
-  "Starlink enterprise WiFi",
-  "Starlink backup power",
-  "Starlink WISP",
-  "Satellite internet Nigeria",
-  "High-speed internet Nigeria",
-  "Starlink coverage Nigeria",
+  "how to set up Starlink in Nigeria",
+  "Starlink monthly subscription Nigeria",
+  "Starlink dealer Nigeria",
+  "Starlink internet Nigeria",
+  "Starlink equipment Nigeria",
+  "professional Starlink installation",
+  "satellite internet Nigeria",
 ];
 
 type StructuredData = Record<string, unknown>;
@@ -43,6 +43,8 @@ interface SeoProps {
   keywords?: string[];
   noindex?: boolean;
   schema?: StructuredData | StructuredData[];
+  /** When true, emits full LocalBusiness + offer catalog (use on homepage only). */
+  includeLocalBusinessSchema?: boolean;
 }
 
 export default function Seo({
@@ -56,6 +58,7 @@ export default function Seo({
   keywords,
   noindex = false,
   schema,
+  includeLocalBusinessSchema = false,
 }: SeoProps) {
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -65,7 +68,7 @@ export default function Seo({
     const keywordSet = Array.from(new Set([...KEYWORD_BASE, ...(keywords ?? [])]));
     const keywordString = keywordSet.join(", ");
     const canonicalUrl = resolveCanonical(canonical);
-    const ogImage = image ? resolveUrl(image) : DEFAULT_IMAGE;
+    const ogImage = image ? resolveUrl(image) : DEFAULT_OG_IMAGE;
 
     document.title = title;
 
@@ -99,7 +102,6 @@ export default function Seo({
     upsertMeta(head, { name: "twitter:title", content: title });
     upsertMeta(head, { name: "twitter:description", content: desc });
     upsertMeta(head, { name: "twitter:image", content: ogImage });
-    upsertMeta(head, { name: "twitter:site", content: "@StarlinkNG" });
 
     const structuredData = buildStructuredData({
       title,
@@ -110,9 +112,22 @@ export default function Seo({
       publishedTime,
       updatedTime,
       schema,
+      includeLocalBusinessSchema,
     });
     upsertStructuredData(structuredData);
-  }, [title, description, canonical, image, type, publishedTime, updatedTime, keywords?.join("|"), noindex, schema]);
+  }, [
+    title,
+    description,
+    canonical,
+    image,
+    type,
+    publishedTime,
+    updatedTime,
+    keywords?.join("|"),
+    noindex,
+    schema,
+    includeLocalBusinessSchema,
+  ]);
 
   return null;
 }
@@ -175,7 +190,6 @@ function resolveCanonical(target?: string) {
       return new URL(window.location.pathname + window.location.search, SITE_URL).toString();
     }
 
-    // Already absolute?
     if (/^https?:\/\//i.test(target)) {
       return target;
     }
@@ -201,6 +215,7 @@ function buildStructuredData({
   publishedTime,
   updatedTime,
   schema,
+  includeLocalBusinessSchema,
 }: {
   title: string;
   description: string;
@@ -210,8 +225,31 @@ function buildStructuredData({
   publishedTime?: string;
   updatedTime?: string;
   schema?: StructuredData | StructuredData[];
+  includeLocalBusinessSchema: boolean;
 }): StructuredData[] | null {
   const schemas: StructuredData[] = [];
+
+  const organizationSchema: StructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: LEGAL_BUSINESS_NAME,
+    legalName: LEGAL_BUSINESS_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/starlinklogo.png`,
+    email: BUSINESS_EMAIL,
+    telephone: BUSINESS_PHONE_E164,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: BUSINESS_ADDRESS.streetAddress,
+      addressLocality: BUSINESS_ADDRESS.addressLocality,
+      addressRegion: BUSINESS_ADDRESS.addressRegion,
+      postalCode: BUSINESS_ADDRESS.postalCode,
+      addressCountry: BUSINESS_ADDRESS.addressCountry,
+    },
+    sameAs: [...SAME_AS],
+    areaServed: { "@type": "Country", name: "Nigeria" },
+  };
 
   const webSiteSchema: StructuredData = {
     "@context": "https://schema.org",
@@ -220,11 +258,7 @@ function buildStructuredData({
     url: SITE_URL,
     description,
     inLanguage: "en-NG",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 
   const webPageSchema: StructuredData = {
@@ -241,102 +275,83 @@ function buildStructuredData({
     primaryImageOfPage: image,
   };
 
-  const localBusinessSchema: StructuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": SITE_URL,
-    name: BRAND_NAME,
-    url: SITE_URL,
-    telephone: "+2349060976424",
-    priceRange: "₦₦₦",
-    image,
-    description: description || "Professional Starlink installation and services across all 36 states in Nigeria. Expert satellite internet installation, distribution, and support.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "House 7, Trunk H, Mandela Estate, SARS Road",
-      addressLocality: "Port Harcourt",
-      addressRegion: "Rivers State",
-      postalCode: "500102",
-      addressCountry: "NG",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 4.8156,
-      longitude: 7.0498,
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "08:00",
-      closes: "18:00",
-    },
-    areaServed: {
-      "@type": "Country",
-      name: "Nigeria",
-    },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Starlink Services",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Starlink Installation Service",
-            description: "Professional Starlink satellite internet installation across Nigeria",
-            provider: {
-              "@type": "LocalBusiness",
-              name: BRAND_NAME,
-            },
-            areaServed: {
-              "@type": "Country",
-              name: "Nigeria",
-            },
-            availableChannel: {
-              "@type": "ServiceChannel",
-              serviceUrl: `${SITE_URL}/services`,
-              servicePhone: "+2349060976424",
-            },
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Starlink Maintenance and Support",
-            description: "24/7 Starlink maintenance, troubleshooting, and technical support",
-            provider: {
-              "@type": "LocalBusiness",
-              name: BRAND_NAME,
-            },
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Starlink Equipment Sales",
-            description: "Official Starlink hardware and accessories distribution",
-            provider: {
-              "@type": "LocalBusiness",
-              name: BRAND_NAME,
-            },
-          },
-        },
-      ],
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "127",
-    },
-    sameAs: [
-      "https://www.facebook.com/starlinknigeria",
-      "https://www.instagram.com/starlinknigeria",
-    ],
-  };
+  schemas.push(organizationSchema, webSiteSchema, webPageSchema);
 
-  schemas.push(webSiteSchema, webPageSchema, localBusinessSchema);
+  if (includeLocalBusinessSchema) {
+    const localBusinessSchema: StructuredData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `${SITE_URL}/#localbusiness`,
+      name: LEGAL_BUSINESS_NAME,
+      url: SITE_URL,
+      telephone: BUSINESS_PHONE_E164,
+      email: BUSINESS_EMAIL,
+      priceRange: "₦₦₦",
+      image,
+      description:
+        description ||
+        "Professional Starlink installation and internet services across Nigeria. Hardware sales, certified installers, enterprise WiFi, and ongoing support.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: BUSINESS_ADDRESS.streetAddress,
+        addressLocality: BUSINESS_ADDRESS.addressLocality,
+        addressRegion: BUSINESS_ADDRESS.addressRegion,
+        postalCode: BUSINESS_ADDRESS.postalCode,
+        addressCountry: BUSINESS_ADDRESS.addressCountry,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: BUSINESS_GEO.latitude,
+        longitude: BUSINESS_GEO.longitude,
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "08:00",
+        closes: "18:00",
+      },
+      areaServed: { "@type": "Country", name: "Nigeria" },
+      serviceType: "Starlink installation",
+      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Starlink services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Starlink installation Nigeria",
+              description: "Professional Starlink satellite internet installation across Nigeria",
+              provider: { "@id": `${SITE_URL}/#localbusiness` },
+              areaServed: { "@type": "Country", name: "Nigeria" },
+              availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: `${SITE_URL}/services`,
+                servicePhone: BUSINESS_PHONE_E164,
+              },
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Starlink maintenance and support",
+              description: "Troubleshooting, repairs, and ongoing technical support for Starlink users in Nigeria",
+              provider: { "@id": `${SITE_URL}/#localbusiness` },
+            },
+          },
+        ],
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "127",
+      },
+      sameAs: [...SAME_AS],
+    };
+    schemas.push(localBusinessSchema);
+  }
 
   if (type === "article" && publishedTime) {
     schemas.push({

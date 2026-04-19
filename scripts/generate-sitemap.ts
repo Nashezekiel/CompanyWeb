@@ -4,8 +4,9 @@ import { fileURLToPath } from "url";
 import { blogPosts } from "../client/data/blog";
 import { products } from "../client/data/products";
 import { services } from "../client/data/services";
+import { serviceLocations } from "../client/data/locations";
 
-const BASE_URL = (process.env.SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/+$/, "");
+const BASE_URL = (process.env.SITE_URL ?? "https://www.datagram.ng").replace(/\/+$/, "");
 const OUTPUT_PATH = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../public/sitemap.xml");
 
 type RouteEntry = {
@@ -33,9 +34,20 @@ function buildUrlEntries(): RouteEntry[] {
     { path: "/blog", priority: 0.8, changefreq: "weekly", lastmod: todayIso },
     { path: "/contact", priority: 0.7, changefreq: "monthly", lastmod: todayIso },
     { path: "/support", priority: 0.6, changefreq: "monthly", lastmod: todayIso },
+    { path: "/faq", priority: 0.85, changefreq: "monthly", lastmod: todayIso },
+    { path: "/locations", priority: 0.85, changefreq: "monthly", lastmod: todayIso },
+    { path: "/guide/starlink-nigeria", priority: 0.9, changefreq: "monthly", lastmod: todayIso },
+    { path: "/gallery", priority: 0.65, changefreq: "monthly", lastmod: todayIso },
     { path: "/privacy", priority: 0.5, changefreq: "yearly", lastmod: todayIso },
     { path: "/terms", priority: 0.5, changefreq: "yearly", lastmod: todayIso },
   ];
+
+  const locationRoutes: RouteEntry[] = serviceLocations.map((loc) => ({
+    path: `/locations/${loc.slug}`,
+    priority: 0.82,
+    changefreq: "monthly",
+    lastmod: todayIso,
+  }));
 
   const serviceRoutes: RouteEntry[] = services.map((service) => ({
     path: `/services/${service.slug}`,
@@ -58,7 +70,7 @@ function buildUrlEntries(): RouteEntry[] {
     lastmod: new Date(post.date ?? todayIso).toISOString(),
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...productRoutes, ...blogRoutes];
+  return [...staticRoutes, ...locationRoutes, ...serviceRoutes, ...productRoutes, ...blogRoutes];
 }
 
 function toAbsoluteUrl(slug: string) {

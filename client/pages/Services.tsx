@@ -60,12 +60,13 @@ export default function Services() {
   return (
     <section className="relative py-20">
       <Seo
-        title="Starlink Internet Services & Installation Plans in Nigeria"
-        description="Explore Starlink internet services, installation plans, and connectivity solutions in Nigeria, including long-range WiFi, WISP setups, enterprise networks, and backup power."
+        title="Starlink Installation Services Nigeria | WiFi, WISP & Enterprise | DataGram"
+        description="Explore Starlink installation services Nigeria: sales & install, mesh WiFi, 10km links, WISP setup, backup power, enterprise throughput. DataGram—book a free site survey today."
         canonical="/services"
         keywords={[
           "Starlink services Nigeria",
           "Starlink installation plans",
+          "Starlink installer Nigeria",
           "Enterprise WiFi Nigeria",
           "Starlink backup power",
         ]}
@@ -136,6 +137,72 @@ export default function Services() {
             <Link to="/contact">Request a Quote</Link>
           </Button>
         </div>
+
+        <ServicesDeepContent />
+      </div>
+    </section>
+  );
+}
+
+function ServicesDeepContent() {
+  return (
+    <section className="mt-20 border-t pt-16 text-left" aria-labelledby="services-guide-heading">
+      <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-foreground/85">
+        <h2 id="services-guide-heading" className="text-3xl font-extrabold tracking-tight text-foreground">
+          How DataGram delivers Starlink installation services Nigeria businesses actually use
+        </h2>
+        <p>
+          Procurement teams rarely buy “Starlink” as a hobby—they buy uptime for finance closes, telemedicine sessions, remote SCADA, and creator uploads. That is why our services read like network engineering, not gadget sales. We document cable paths, grounding, VLAN intent, and power behavior during generator transfers so your IT lead or facility manager can defend the design internally.
+        </p>
+        <p>
+          Voice and AI queries such as “Starlink installer near me” or “buy Starlink Nigeria” collapse to trust signals: consistent phone numbers, physical addresses, case studies, and explainers that admit trade-offs. We publish{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/faq">
+            Nigeria FAQs
+          </Link>
+          ,{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/guide/starlink-nigeria">
+            a long-form guide
+          </Link>
+          , and{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/locations">
+            city pages
+          </Link>{" "}
+          so humans and machines can route questions to the right depth without guessing.
+        </p>
+        <h3 className="text-2xl font-bold tracking-tight text-foreground">From rooftop to router: what “full service” includes</h3>
+        <p>
+          A proper install starts with a survey photo pack: roofline, cable entry options, existing ISP handoff, and power panels. We then specify mast hardware, shielded Ethernet where needed, drip loops, and lightning bonds that survive Lagos sea breeze or northern dust seasons. After alignment, we do not disappear—we label ports, export quick speed tests, and show how to read obstruction graphs so transient weather dips do not cause panic.
+        </p>
+        <p>
+          Enterprises often chain Starlink behind SD-WAN appliances or firewalls. We coordinate IP plans, DHCP scopes, and dual-WAN health checks. Retailers may need segregated guest SSIDs; estates may require silent handoffs between houses. WISP operators need honest contention math. Each pattern changes bill of materials and crew size, which is why cookie-cutter quotes fail open tender reviews.
+        </p>
+        <h3 className="text-2xl font-bold tracking-tight text-foreground">Internal links that shorten your buying cycle</h3>
+        <p>
+          Jump directly to{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/services/sales-installation">
+            sales & installation
+          </Link>
+          ,{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/services/whole-premises">
+            whole-premises WiFi
+          </Link>
+          ,{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/services/long-range">
+            long-range extensions
+          </Link>
+          , or{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/services/backup-power">
+            backup power
+          </Link>{" "}
+          if you already know your bottleneck. Otherwise message us on WhatsApp with a map pin; we will tell you which section of this stack matters first.
+        </p>
+        <p>
+          When you are ready,{" "}
+          <Link className="text-primary underline-offset-4 hover:underline" to="/contact">
+            open the contact form
+          </Link>{" "}
+          and mention your vertical (home, school, clinic, factory, ISP). We route you to engineers who speak that language, not a generic call center script.
+        </p>
       </div>
     </section>
   );
@@ -167,7 +234,7 @@ function ServiceSection({
               <>
                 <img 
                   src={service.image} 
-                  alt={service.title} 
+                  alt={`${service.title} — Starlink installation Nigeria example by DataGram`} 
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;

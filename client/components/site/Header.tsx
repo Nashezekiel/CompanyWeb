@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home as HomeIcon, Layers, Boxes, FileText, Mail, Phone, MessageCircle, MapPin, Info, ChevronDown, Target, ShieldCheck, Eye, Facebook, Instagram } from "lucide-react";
+import { Menu, X, Home as HomeIcon, Layers, Boxes, FileText, Mail, Phone, MessageCircle, MapPin, Info, ChevronDown, Target, ShieldCheck, Eye, Facebook, Instagram, HelpCircle, BookOpen } from "lucide-react";
 import { services } from "@/data/services";
 import { products } from "@/data/products";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +13,9 @@ const nav = [
   { to: "/services", label: "Services" },
   { to: "/products", label: "Products" },
   { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/guide/starlink-nigeria", label: "Nigeria Guide" },
+  { to: "/locations", label: "Cities" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -106,6 +109,12 @@ export default function Header() {
         return <FileText className="h-4 w-4" />;
       case 'Contact':
         return <Mail className="h-4 w-4" />;
+      case 'FAQ':
+        return <HelpCircle className="h-4 w-4" />;
+      case 'Nigeria Guide':
+        return <BookOpen className="h-4 w-4" />;
+      case 'Cities':
+        return <MapPin className="h-4 w-4" />;
       default:
         return null;
     }
@@ -156,7 +165,7 @@ export default function Header() {
               <div className="text-right leading-tight">
                 <div className="mt-1 mb-1 flex items-center justify-end gap-2">
                   <Button asChild className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 text-white">
-                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
+                    <a href="tel:+2349060976424" aria-label="Call DataGram">
                       <Phone className="mr-1 h-4 w-4" /> Call
                     </a>
                   </Button>
@@ -165,7 +174,7 @@ export default function Header() {
                       href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label="WhatsApp message to Starlink Installation & Services"
+                      aria-label="WhatsApp message to DataGram"
                     >
                       <MessageCircle className="mr-1 h-4 w-4" /> Message
                     </a>
@@ -183,12 +192,12 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-2">
             <img
               src="/starlinklogo.png"
-              alt="Starlink Installation & Services logo"
+              alt="DataGram logo"
               className="h-10 w-auto"
             />
             <div className="font-extrabold leading-tight">
               <span className="tracking-tight text-[15px] sm:text-[18px] md:text-[22px] xl:text-[25px] whitespace-nowrap">
-                Starlink Installation & Services
+                DataGram
               </span>
             </div>
           </Link>
@@ -297,7 +306,7 @@ export default function Header() {
                                     size="sm"
                                     className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                   >
-                                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
+                                    <a href="tel:+2349060976424" aria-label="Call DataGram">
                                       <Phone className="mr-1 h-3 w-3" /> Call
                                     </a>
                                   </Button>
@@ -311,7 +320,7 @@ export default function Header() {
                                       href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                       target="_blank"
                                       rel="noreferrer"
-                                      aria-label="WhatsApp message to Starlink Installation & Services"
+                                      aria-label="WhatsApp message to DataGram"
                                     >
                                       <MessageCircle className="mr-1 h-3 w-3" /> Message
                                     </a>
@@ -428,7 +437,7 @@ export default function Header() {
                                     size="sm"
                                     className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                   >
-                                    <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
+                                    <a href="tel:+2349060976424" aria-label="Call DataGram">
                                       <Phone className="mr-1 h-3 w-3" /> Call
                                     </a>
                                   </Button>
@@ -442,7 +451,7 @@ export default function Header() {
                                       href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                       target="_blank"
                                       rel="noreferrer"
-                                      aria-label="WhatsApp message to Starlink Installation & Services"
+                                      aria-label="WhatsApp message to DataGram"
                                     >
                                       <MessageCircle className="mr-1 h-3 w-3" /> Message
                                     </a>
@@ -606,7 +615,7 @@ export default function Header() {
                                   size="sm"
                                   className="h-7 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
                                 >
-                                  <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
+                                  <a href="tel:+2349060976424" aria-label="Call DataGram">
                                     <Phone className="mr-1 h-3 w-3" /> Call
                                   </a>
                                 </Button>
@@ -620,7 +629,7 @@ export default function Header() {
                                     href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                                     target="_blank"
                                     rel="noreferrer"
-                                    aria-label="WhatsApp message to Starlink Installation & Services"
+                                    aria-label="WhatsApp message to DataGram"
                                   >
                                     <MessageCircle className="mr-1 h-3 w-3" /> Message
                                   </a>
@@ -967,7 +976,7 @@ export default function Header() {
               </div>
               <div className="flex items-center gap-2 pt-4">
                 <Button asChild className="h-9 px-3 text-sm bg-green-600 hover:bg-green-700 text-white">
-                  <a href="tel:+2349060976424" aria-label="Call Starlink Installation & Services">
+                  <a href="tel:+2349060976424" aria-label="Call DataGram">
                     <Phone className="mr-1 h-4 w-4" /> Call
                   </a>
                 </Button>
@@ -976,7 +985,7 @@ export default function Header() {
                     href={`https://wa.me/2349060976424?text=${encodeURIComponent("Hello Starlink, I'd like to get connected.")}`}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="WhatsApp message to Starlink Installation & Services"
+                    aria-label="WhatsApp message to DataGram"
                   >
                     <MessageCircle className="mr-1 h-4 w-4" /> Message
                   </a>

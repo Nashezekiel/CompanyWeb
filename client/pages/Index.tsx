@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Antenna, Cog, ShieldCheck, Satellite, SignalHigh, Wifi, HelpCircle, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Antenna,
+  Cog,
+  ShieldCheck,
+  Satellite,
+  SignalHigh,
+  Wifi,
+  HelpCircle,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  MapPin,
+  BookOpen,
+  Images,
+  ArrowRight,
+  Building2,
+  BatteryCharging,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ProductsTeaser from "@/components/site/ProductsTeaser";
 import BlogTeaser from "@/components/site/BlogTeaser";
@@ -11,7 +29,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useInView from "@/hooks/use-inview";
 import Seo from "@/components/Seo";
 import { faqs } from "@/data/faq";
+import { BRAND_NAME, SITE_URL } from "@/lib/site";
 import { testimonials as initialTestimonials } from "@/data/testimonials";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 type StatItem = {
   value: number;
@@ -26,8 +46,6 @@ const HOME_STATS: StatItem[] = [
   { value: 99.9, suffix: "%", label: "Uptime Targets", decimals: 1 },
   { value: 24, suffix: "/7", label: "Support Availability" },
 ];
-
-const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://www.starlinknetworkservice.ng").replace(/\/$/, "");
 
 const PARTNER_LOGOS = [
   "Starlink",
@@ -122,7 +140,7 @@ export default function Index() {
         serviceType: "Starlink Installation Nigeria",
         provider: {
           "@type": "LocalBusiness",
-          name: "Starlink Installation & Services",
+          name: BRAND_NAME,
           url: SITE_URL,
           telephone: "+2349060976424",
         },
@@ -153,18 +171,19 @@ export default function Index() {
   return (
     <div className="flex min-h-screen flex-col">
       <Seo
-        title="Starlink Installation Nigeria | Professional Services Across All 36 States | Starlink Installation & Services"
-        description="Expert Starlink installation and support services in Nigeria. Serving Lagos, Abuja, Port Harcourt, and all 36 states. Professional satellite internet installation, distribution, and 24/7 support. Get fast, reliable connectivity today."
+        title="Starlink Installation Nigeria | Professional Services Across All 36 States | DataGram"
+        description="Starlink installation Nigeria & Starlink installer Nigeria: DataGram covers all 36 states with surveys, mounting, mesh WiFi, and enterprise support. Get a free site survey today."
         canonical="/"
         schema={faqSchema}
+        includeLocalBusinessSchema
         keywords={[
           "Starlink installation Nigeria",
-          "Starlink installation Lagos",
+          "Starlink installer Nigeria",
           "Starlink installation Abuja",
-          "Starlink dealer Nigeria",
-          "Buy Starlink Nigeria",
-          "Starlink internet Nigeria",
-          "Professional Starlink installation",
+          "Starlink installation Lagos",
+          "buy Starlink Nigeria",
+          "Starlink setup Nigeria",
+          "Starlink support Nigeria",
         ]}
       />
       <Hero />
@@ -185,49 +204,7 @@ export default function Index() {
         </div>
       </section>
       
-      {/* SEO-Optimized Content Section - Hidden visually but accessible to search engines */}
-      <section className="sr-only" aria-label="SEO Content">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6">
-          Professional Starlink Installation Services in Nigeria - Serving All 36 States
-        </h1>
-        <div className="space-y-6">
-          <p>
-            <strong>Starlink Installation & Services</strong> is Nigeria's leading provider of professional Starlink satellite internet installation and support services. We offer expert installation, distribution, and 24/7 technical support across all 36 states in Nigeria, including Lagos, Abuja, Port Harcourt, Kano, Ibadan, and beyond.
-          </p>
-          
-          <h2>
-            Why Choose Us for Starlink Installation in Nigeria?
-          </h2>
-          <p>
-            As an authorized Starlink dealer and professional installer in Nigeria, we provide comprehensive satellite internet solutions for homes, businesses, and enterprises. Our certified engineers ensure proper installation, optimal signal strength, and reliable connectivity that works across Nigeria's diverse geography.
-          </p>
-          
-          <h2>
-            Our Starlink Services Across Nigeria
-          </h2>
-          <ul>
-            <li><strong>Professional Starlink Installation:</strong> Expert installation services in Lagos, Abuja, Port Harcourt, and all major Nigerian cities</li>
-            <li><strong>Starlink Equipment Sales:</strong> Authorized dealer offering Starlink Standard, Flat High Performance, and Mini dishes</li>
-            <li><strong>24/7 Technical Support:</strong> Round-the-clock assistance for troubleshooting and maintenance</li>
-            <li><strong>Enterprise Solutions:</strong> Long-range WiFi, backup power systems, and managed networks for businesses</li>
-            <li><strong>Coverage Nationwide:</strong> We provide Starlink installation services in all 36 Nigerian states</li>
-          </ul>
-          
-          <h2>
-            Starlink Installation in Major Nigerian Cities
-          </h2>
-          <p>
-            We provide professional Starlink installation services in key cities across Nigeria. Our team has completed installations in Lagos (Victoria Island, Lekki, Ikeja), Abuja (Garki, Wuse, Maitama), Port Harcourt, Kano, Ibadan, Enugu, Kaduna, Benin City, and many more locations. Whether you're in a major city or remote area, we can install your Starlink system for optimal performance.
-          </p>
-          
-          <p>
-            Get professional Starlink installation in Nigeria today. Call us at <strong>+234 906 097 6424</strong> or visit our <Link to="/contact">contact page</Link> to request a quote. We offer competitive pricing and same-day installation in most areas.
-          </p>
-          <p>
-            <Link to="/products">View Starlink Products</Link> | <Link to="/services">Explore Our Services</Link> | <Link to="/blog">Read Installation Guides</Link>
-          </p>
-        </div>
-      </section>
+      <HomeIntroSection />
       
       <section aria-label="Highlights band" className="relative mt-6 md:mt-6" style={{ backgroundColor: "whitesmoke" }}>
         <FinalCTA />
@@ -238,6 +215,228 @@ export default function Index() {
       <Testimonials />
       <FAQ />
     </div>
+  );
+}
+
+const INTRO_CITY_LINKS = [
+  { to: "/locations/lagos", label: "Lagos" },
+  { to: "/locations/abuja", label: "Abuja" },
+  { to: "/locations/port-harcourt", label: "Port Harcourt" },
+  { to: "/locations/kano", label: "Kano" },
+] as const;
+
+const INTRO_SERVICE_CARDS = [
+  {
+    to: "/services/sales-installation",
+    title: "Sales & installation",
+    description: "Labeled cable photos and speed tests from your desk—not just the roof.",
+    icon: Satellite,
+  },
+  {
+    to: "/services/whole-premises",
+    title: "WiFi & long-range",
+    description: "Whole-premises mesh plus point-to-point links for gates and outbuildings.",
+    icon: Wifi,
+  },
+  {
+    to: "/services/enterprise-plans",
+    title: "Enterprise throughput",
+    description: "VLAN discipline, monitored failover, and documentation your IT team expects.",
+    icon: Building2,
+  },
+  {
+    to: "/services/backup-power",
+    title: "Backup power",
+    description: "Designs that respect Nigerian generator and inverter realities.",
+    icon: BatteryCharging,
+  },
+] as const;
+
+function HomeIntroSection() {
+  return (
+    <section
+      className="relative overflow-hidden border-t border-[#000080]/10 py-16 md:py-24"
+      aria-labelledby="home-intro-heading"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_-30%,rgba(0,0,128,0.14),transparent_55%)]"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute -right-24 top-1/4 h-72 w-72 rounded-full bg-primary/5 blur-3xl md:block" aria-hidden />
+      <div className="container relative max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 lg:items-start">
+          <div className="lg:col-span-7">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#000080]/20 bg-[#000080]/[0.06] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#000080]">
+              <MapPin className="h-3.5 w-3.5" aria-hidden />
+              Nationwide coverage
+            </p>
+            <h1
+              id="home-intro-heading"
+              className="mt-5 font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl lg:text-[2.65rem] lg:leading-[1.12]"
+            >
+              Professional Starlink installation across Nigeria
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-foreground/80 md:text-lg">
+              <strong className="text-foreground">{BRAND_NAME}</strong> is a Starlink installer Nigeria teams rely on for
+              honest surveys, weatherproof cabling, and documented handovers. We sell genuine kits, extend WiFi across
+              estates, design hybrid fiber plus Starlink failover, and keep businesses online with backup power options.
+              Serving customers who say things like “Starlink installation near me” in our core metros and nationwide field
+              deployments.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {INTRO_CITY_LINKS.map((city) => (
+                <Link
+                  key={city.to}
+                  to={city.to}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#000080]/15 bg-white/90 px-4 py-2 text-sm font-semibold text-[#000080] shadow-sm backdrop-blur-sm transition hover:border-[#000080]/35 hover:bg-[#000080]/[0.07] hover:shadow-md"
+                >
+                  {city.label}
+                  <ArrowRight className="h-3.5 w-3.5 opacity-60" aria-hidden />
+                </Link>
+              ))}
+              <Link
+                to="/locations"
+                className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-foreground/25 px-4 py-2 text-sm font-medium text-foreground/70 transition hover:border-foreground/40 hover:bg-muted/50 hover:text-foreground"
+              >
+                All cities
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <Card className="h-full border-[#000080]/15 bg-card/95 shadow-lg shadow-[#000080]/5 backdrop-blur-sm">
+              <CardHeader className="space-y-1 pb-2">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <ClipboardCheck className="h-5 w-5" aria-hidden />
+                </div>
+                <CardTitle className="text-xl font-bold tracking-tight md:text-2xl">
+                  Why book a DataGram survey first?
+                </CardTitle>
+                
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/80 md:text-[15px]">
+                <p>
+                  We measure sky view, plan grounding, confirm landlord rules, and explain realistic speeds before you spend
+                  on the wrong dish variant. That is how we reduce costly rework and shorten time-to-online for homes,
+                  schools, clinics, factories, and creative studios.
+                </p>
+                <Button asChild className="w-full sm:w-auto" variant="secondary">
+                  <Link to="/contact">Request a free site survey</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <div className="mt-14 md:mt-16">
+          <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <h2 className="text-2xl font-extrabold tracking-tight text-foreground md:text-3xl">
+              Services aligned to how Nigerians use the internet
+            </h2>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+            >
+              View all services
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {INTRO_SERVICE_CARDS.map(({ to, title, description, icon: Icon }) => (
+              <Link key={to} to={to} className="group block h-full">
+                <Card className="h-full border-[#000080]/10 bg-white/80 transition hover:border-primary/30 hover:shadow-md dark:bg-card/80">
+                  <CardHeader className="pb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#000080]/8 text-[#000080] transition group-hover:bg-primary/10 group-hover:text-primary">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </div>
+                    <CardTitle className="text-base font-bold leading-snug">{title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm leading-relaxed text-foreground/75">{description}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary opacity-90 transition group-hover:gap-2 group-hover:opacity-100">
+                      Learn more
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 md:mt-16">
+          <h2 className="text-2xl font-extrabold tracking-tight text-foreground md:text-3xl">Answer-first resources</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <Link
+              to="/faq"
+              className="group flex flex-col rounded-2xl border border-[#000080]/10 bg-gradient-to-br from-white to-slate-50/80 p-6 shadow-sm transition hover:border-primary/25 hover:shadow-md dark:from-card dark:to-card/80"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <HelpCircle className="h-5 w-5" aria-hidden />
+              </div>
+              <span className="mt-4 text-lg font-bold text-foreground">Starlink Nigeria FAQ</span>
+              <span className="mt-2 flex-1 text-sm leading-relaxed text-foreground/75">
+                Short answers on cost, timelines, weather, and business use—written for voice-style queries.
+              </span>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                Open FAQ
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </span>
+            </Link>
+            <Link
+              to="/guide/starlink-nigeria"
+              className="group flex flex-col rounded-2xl border border-[#000080]/10 bg-gradient-to-br from-white to-slate-50/80 p-6 shadow-sm transition hover:border-primary/25 hover:shadow-md dark:from-card dark:to-card/80"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <BookOpen className="h-5 w-5" aria-hidden />
+              </div>
+              <span className="mt-4 text-lg font-bold text-foreground">Guide to Starlink in Nigeria</span>
+              <span className="mt-2 flex-1 text-sm leading-relaxed text-foreground/75">
+                Long-form, citable context on coverage, power, WiFi, and enterprise patterns.
+              </span>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                Read guide
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </span>
+            </Link>
+            <Link
+              to="/gallery"
+              className="group flex flex-col rounded-2xl border border-[#000080]/10 bg-gradient-to-br from-white to-slate-50/80 p-6 shadow-sm transition hover:border-primary/25 hover:shadow-md dark:from-card dark:to-card/80"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Images className="h-5 w-5" aria-hidden />
+              </div>
+              <span className="mt-4 text-lg font-bold text-foreground">Installation gallery</span>
+              <span className="mt-2 flex-1 text-sm leading-relaxed text-foreground/75">
+                Visual proof of field work—swap in your own project photos over time.
+              </span>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                View gallery
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-stretch justify-between gap-4 rounded-2xl border border-[#000080]/20 bg-[#000080] px-6 py-6 text-white shadow-xl md:flex-row md:items-center md:px-8 md:py-7">
+          <div>
+            <p className="text-sm font-medium text-white/80">Ready when you are</p>
+            <p className="mt-1 text-lg font-semibold md:text-xl">
+              Call <a href="tel:+2349060976424" className="underline-offset-4 hover:underline">+234 906 097 6424</a> or
+              book online
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <Button asChild className="bg-white text-[#000080] hover:bg-white/90">
+              <Link to="/contact">Contact page</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+              <Link to="/faq">Browse FAQ</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -307,7 +506,7 @@ function Hero() {
               <img
                 key={s.src}
                 src={s.src}
-                alt={`${s.title} - Professional Starlink Installation Services in Nigeria`}
+                alt={`${s.title} — DataGram Starlink installation Nigeria`}
                 className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${i === idx ? "opacity-100" : "opacity-0"}`}
                 style={{ objectPosition: s.object }}
                 loading={i === 0 ? "eager" : "lazy"}
@@ -320,7 +519,7 @@ function Hero() {
             <div className="absolute inset-0 md:hidden flex items-stretch">
               <div className="relative my-0 mx-0 h-full w-full rounded-none border-none bg-sky-500/10 px-4 py-6 text-white backdrop-blur-[1px] shadow-xl transition-all flex flex-col">
                 <div className="mb-3 mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] tracking-tight">
-                  <Satellite className="h-3.5 w-3.5" /> Starlink Installation & Services
+                  <Satellite className="h-3.5 w-3.5" /> {BRAND_NAME}
                 </div>
                 <h2 className={`font-display mt-2 text-[26px] font-extrabold leading-tight tracking-tight transition-all duration-700 ease-in-out ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   {slides[idx].title}
@@ -373,7 +572,7 @@ function Hero() {
             <div className="relative my-8 md:my-0 h-full w-full rounded-none border border-white/10 bg-[#000080] p-6 md:p-10 pt-8 md:pt-12 text-white backdrop-blur-md shadow-xl transition-all flex flex-col overflow-hidden">
               <div className={`mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs transition-all duration-300 ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'}`}
               >
-                <Satellite className="h-4 w-4" /> Starlink Installation & Services
+                <Satellite className="h-4 w-4" /> {BRAND_NAME}
               </div>
               <h2 className={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight transition-all duration-500 ease-in-out ${textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}>
                 {slides[idx].title}

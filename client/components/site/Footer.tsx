@@ -2,6 +2,14 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  BRAND_NAME,
+  BUSINESS_ADDRESS,
+  BUSINESS_EMAIL,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_E164,
+  LEGAL_BUSINESS_NAME,
+} from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -31,18 +39,14 @@ export default function Footer() {
         <div className="container grid gap-8 py-12 md:grid-cols-4">
           <div>
             <div className="mb-3 flex items-center gap-2">
-              <img
-                src="/starlinklogo.png"
-                alt="Starlink Installation & Services logo"
-                className="h-8 w-auto"
-              />
+              <img src="/starlinklogo.png" alt={`${BRAND_NAME} logo`} className="h-8 w-auto" />
               <div className="font-extrabold leading-tight">
-                <span className="tracking-tight">Starlink Installation & Services</span>
+                <span className="tracking-tight">{BRAND_NAME}</span>
               </div>
             </div>
             <p className="text-sm text-foreground/70 max-w-sm">
-              Reliable, Fast, and Global Connectivity. Starlink distribution,
-              installation, enterprise networks, and WISP enablement.
+              {LEGAL_BUSINESS_NAME} delivers Starlink installation Nigeria-wide, hardware procurement, enterprise WiFi, WISP
+              enablement, and resilient backup power for homes and businesses.
             </p>
             <div className="mt-4 flex items-center gap-3">
               <a
@@ -65,45 +69,128 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-3 font-semibold">Company</h4>
+            <h3 className="mb-3 font-semibold">Company</h3>
             <ul className="space-y-2 text-sm text-foreground/70">
-              <li><Link className="hover:text-foreground transition-colors" to="/about">About</Link></li>
-              <li><Link className="hover:text-foreground transition-colors" to="/blog">Blog</Link></li>
-              <li><Link className="hover:text-foreground transition-colors" to="/contact">Contact</Link></li>
-              <li><Link className="hover:text-foreground transition-colors" to="/admin/login">Admin</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-3 font-semibold">Services</h4>
-            <ul className="space-y-2 text-sm text-foreground/70">
-              <li>Starlink Sales & Installation</li>
-              <li>Whole-Premises WiFi Coverage</li>
-              <li>Long-Range WiFi Extension</li>
-              <li>WISP Business Setup</li>
-              <li>Enterprise Internet Plans</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-3 font-semibold">Contact</h4>
-            <ul className="space-y-2 text-sm text-foreground/70">
-              <li>Email: <a className="hover:text-foreground transition-colors" href="mailto:Appdatagram@gmail.com">Appdatagram@gmail.com</a></li>
-              <li>Support: <a className="hover:text-foreground transition-colors" href="mailto:Appdatagram@gmail.com">Appdatagram@gmail.com</a></li>
-              <li>Hours: Mon–Sat, 8:00–18:00</li>
               <li>
-                WhatsApp: <a className="hover:text-foreground transition-colors" href="https://wa.me/2349060976424" target="_blank" rel="noreferrer">0906 097 6424</a>
+                <Link className="hover:text-foreground transition-colors" to="/about">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/blog">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/contact">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/faq">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/guide/starlink-nigeria">
+                  Starlink Nigeria guide
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/locations">
+                  Service cities
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/gallery">
+                  Installation gallery
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/admin/login">
+                  Admin
+                </Link>
               </li>
             </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-3 font-semibold">Services</h3>
+            <ul className="space-y-2 text-sm text-foreground/70">
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/services/sales-installation">
+                  Starlink sales & installation
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/services/whole-premises">
+                  Whole-premises WiFi
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/services/long-range">
+                  Long-range WiFi
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/services/wisp-setup">
+                  WISP business setup
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-foreground transition-colors" to="/services/enterprise-plans">
+                  Enterprise internet plans
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-3 font-semibold">Contact Us</h3>
+            <address className="not-italic space-y-2 text-sm text-foreground/80">
+              <p className="font-semibold text-foreground">{LEGAL_BUSINESS_NAME}</p>
+              <p>
+                {BUSINESS_ADDRESS.streetAddress}
+                <br />
+                {BUSINESS_ADDRESS.addressLocality}, {BUSINESS_ADDRESS.addressRegion} {BUSINESS_ADDRESS.postalCode}
+                <br />
+                {BUSINESS_ADDRESS.addressCountry === "NG" ? "Nigeria" : BUSINESS_ADDRESS.addressCountry}
+              </p>
+              <p>
+                Phone:{" "}
+                <a className="hover:text-foreground transition-colors" href={`tel:${BUSINESS_PHONE_E164}`}>
+                  {BUSINESS_PHONE_DISPLAY}
+                </a>
+              </p>
+              <p>
+                Email:{" "}
+                <a className="hover:text-foreground transition-colors" href={`mailto:${BUSINESS_EMAIL}`}>
+                  {BUSINESS_EMAIL}
+                </a>
+              </p>
+              <p>
+                WhatsApp:{" "}
+                <a className="hover:text-foreground transition-colors" href="https://wa.me/2349060976424" target="_blank" rel="noreferrer">
+                  Chat on WhatsApp
+                </a>
+              </p>
+              <p>Hours: Mon–Sat, 08:00–18:00 (WAT)</p>
+            </address>
           </div>
         </div>
 
         <div className="border-t py-6">
           <div className="container flex flex-col items-center justify-center gap-3 text-xs text-foreground/60 text-center">
-            <p>© {new Date().getFullYear()} Starlink Installation & Services LTD. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} {LEGAL_BUSINESS_NAME}. All rights reserved.
+            </p>
             <div className="flex items-center gap-4">
-              <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-              <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+              <Link to="/privacy" className="hover:text-foreground transition-colors">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-foreground transition-colors">
+                Terms
+              </Link>
             </div>
           </div>
         </div>
